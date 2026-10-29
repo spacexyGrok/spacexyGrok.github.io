@@ -4,7 +4,7 @@ import indexData from '../../data/gifts/index.json';
 
 const lists = indexData;
 const description =
-  'Deals and Finds gift lists, product grids with prices, notes, and disclosed affiliate deals.';
+  'Deals and Finds gift lists and shopping guides. New guides are on the way.';
 ---
 <BaseLayout
   title="Gift lists"
@@ -21,22 +21,26 @@ const description =
     As an Amazon Associate I earn from qualifying purchases. Full details on the
     <a href="/disclosure/">disclosure page</a>.
   </div>
-  <div class="gift-index-grid">
-    {lists.map((list) => (
-      <a class="gift-tile" href={`/gifts/${list.slug}/`}>
-        <div class="gift-tile-media">
-          {list.image ? (
-            <img src={list.image} alt="" loading="lazy" referrerpolicy="no-referrer" />
-          ) : (
-            <div class="gift-tile-placeholder" aria-hidden="true">{list.productCount} picks</div>
-          )}
-        </div>
-        <div class="gift-tile-body">
-          <h2 class="gift-tile-title">{list.title}</h2>
-          <p class="gift-tile-desc">{list.description}</p>
-          <span class="gift-tile-meta">{list.productCount} items</span>
-        </div>
-      </a>
-    ))}
-  </div>
+  {lists.length === 0 ? (
+    <p class="coming-soon">New guides coming soon.</p>
+  ) : (
+    <div class="gift-index-grid">
+      {lists.map((list) => (
+        <a class="gift-tile" href={`/gifts/${list.slug}/`}>
+          <div class="gift-tile-media">
+            {list.image ? (
+              <img src={list.image} alt="" loading="lazy" referrerpolicy="no-referrer" />
+            ) : (
+              <div class="gift-tile-placeholder" aria-hidden="true">{list.productCount} picks</div>
+            )}
+          </div>
+          <div class="gift-tile-body">
+            <h2 class="gift-tile-title">{list.title}</h2>
+            <p class="gift-tile-desc">{list.description}</p>
+            <span class="gift-tile-meta">{list.productCount} items</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  )}
 </BaseLayout>

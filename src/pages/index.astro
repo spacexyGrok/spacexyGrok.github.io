@@ -25,15 +25,21 @@ const giftLists = giftIndex.filter((g) => g.kind === 'gift-list').slice(0, 6);
   </div>
 
   <h2>Gift lists</h2>
-  <ul class="post-list">
-    {giftLists.map((list) => (
-      <li>
-        <a class="title" href={`/gifts/${list.slug}/`}>{list.title}</a>
-        <div class="meta">{list.productCount} picks · {list.description}</div>
-      </li>
-    ))}
-  </ul>
-  <p><a href="/gifts/">See all gift lists →</a></p>
+  {giftLists.length === 0 ? (
+    <p>New guides coming soon. Check back shortly for refreshed holiday deal lists.</p>
+  ) : (
+    <>
+      <ul class="post-list">
+        {giftLists.map((list) => (
+          <li>
+            <a class="title" href={`/gifts/${list.slug}/`}>{list.title}</a>
+            <div class="meta">{list.productCount} picks · {list.description}</div>
+          </li>
+        ))}
+      </ul>
+      <p><a href="/gifts/">See all gift lists →</a></p>
+    </>
+  )}
 
   <h2>Latest posts</h2>
   <ul class="post-list">

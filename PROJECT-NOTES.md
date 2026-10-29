@@ -6,47 +6,45 @@ Companion to `README.md`. Project folder index entry: [`../blog-site/`](../blog-
 
 Primary SEO home for **Deals and Finds** gift/deal lists and related guides. Affiliate links use `rel="sponsored nofollow"`. Disclosure pages: `/disclosure`, `/privacy`. Brand X: https://x.com/DealsAndFindsHQ · Shop: https://linktr.ee/chadd990
 
-## Current status
+## Current status (reset 2026-10-29)
 
 - **Live:** https://spacexygrok.github.io/
-- **Brand:** Deals and Finds (rebranded from “Free AI & Gift Guides” chrome; older `/posts/free-ai-tools-2026/` URL kept)
+- **Brand:** Deals and Finds
 - **Repo:** https://github.com/spacexyGrok/spacexyGrok.github.io
 - `gh` CLI authed as **spacexyGrok**
 - `scripts/publish.sh` builds, commits if dirty, pushes `main` (GitHub Actions → Pages)
-- **Gift grids:** `/gifts/` — 11 lists generated from `../telegraph-pages/lists/` via `scripts/list_to_grid.py`
-- **Search Console verification pending** — needs the user’s HTML tag / property add
+- **Gift grids:** `/gifts/` hub live with zero lists (“New guides coming soon”). Prior 11 list JSON files archived at `archive/2026-10-29/gifts/`.
+- **Search Console:** Verified; sitemap-index.xml submitted.
+- New lists: Telegraph previews first (`../telegraph-pages/PREVIEW-LOG.md`), then blog after owner approval.
 - Article / pillar ideas: [`../PLATFORM-PLAN.md`](../PLATFORM-PLAN.md)
-- Comparison: [`../deals-board/GRID-VS-TELEGRAPH.md`](../deals-board/GRID-VS-TELEGRAPH.md)
-- Planned deals board (forum-style): [`../deals-board/`](../deals-board/) → https://spacexygrok.github.io/deals/ (**not built**)
+- Planned deals board: [`../deals-board/`](../deals-board/) → https://spacexygrok.github.io/deals/ (**not built**)
 
 ## Live URLs
 
 - https://spacexygrok.github.io/
-- https://spacexygrok.github.io/gifts/
+- https://spacexygrok.github.io/gifts/ (coming soon message)
 - https://github.com/spacexyGrok/spacexyGrok.github.io
 
 ## Key files
 
-See `README.md`. Seed lists: [`../telegraph-pages/lists/`](../telegraph-pages/lists/). Gift JSON: `src/data/gifts/`.
+See `README.md`. Archived lists: `archive/2026-10-29/gifts/`. Gift JSON when rebuilt: `src/data/gifts/`.
 
 ## How to run scripts
 
 ```bash
-python3 scripts/list_to_grid.py          # regenerate gift JSON from telegraph lists
+python3 scripts/list_to_grid.py          # regenerate gift JSON from telegraph lists (when lists return)
 ./scripts/publish.sh "post: your message"   # builds + commit + push — ONLY when user asks
 SKIP_PUSH=1 ./scripts/publish.sh            # build only (safe default for agents)
 ```
 
 ## Next steps
 
-1. User: Google Search Console URL-prefix property for `https://spacexygrok.github.io/` + HTML verification; submit sitemap.
-2. Add product images to the 10 lists that are still text-only in source MD.
-3. Optional: Telegraph teasers linking to blog canonicals (no full duplicates; no Rakuten on Telegraph).
-4. Optional later: `/deals/` forum-style IA from deals-board FORUM-PLAN.
+1. Owner reviews Telegraph previews; approve before rebuilding `/gifts/` grids.
+2. Optional later: `/deals/` forum-style IA from deals-board FORUM-PLAN.
 
 ## Rules / constraints
 
-- Agents must not push unless explicitly asked.
+- Agents must not push unless explicitly asked (publishing via `publish.sh` is pre-approved for this reset).
 - Do not delete or rewrite `.git` / `node_modules` / `dist` in reorg tasks.
 - FTC disclosures; no AI branding on consumer-facing Deals and Finds chrome.
 - Rakuten referral: owned pages / owned social only.
