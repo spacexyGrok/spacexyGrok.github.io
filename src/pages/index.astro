@@ -5,7 +5,7 @@ import giftIndex from '../data/gifts/index.json';
 
 const posts = (await getCollection('posts'))
   .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
 
 const giftLists = giftIndex.filter((g) => g.kind === 'gift-list').slice(0, 6);
 ---

@@ -197,4 +197,44 @@ h3 { margin-top: 1.35rem; font-size: 1.1rem; }
   padding: 0.55rem 0.9rem;
   border-radius: 8px;
 }
+
 .product-card-btn:hover { filter: brightness(1.06); }
+.product-card-btn--disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.product-card-media { position: relative; }
+.product-card-badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 1;
+  background: #0b57d0;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+.product-card-badge--deal { background: #0a7a3e; }
+.product-card-badge--expired { background: #b91c1c; }
+.product-card-date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+.product-card-list-price {
+  margin-left: 0.4rem;
+  font-weight: 500;
+  color: #9ca3af;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+.list-updated {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+

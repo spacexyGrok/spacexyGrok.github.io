@@ -5,7 +5,7 @@ Usage:
   python3 scripts/list_to_grid.py
   python3 scripts/list_to_grid.py --src ../telegraph-pages/lists --out src/data/gifts
 
-LOCAL ONLY — does not commit, push, or publish.
+LOCAL ONLY, does not commit, push, or publish.
 """
 from __future__ import annotations
 
@@ -14,15 +14,16 @@ import json
 import re
 from pathlib import Path
 
+# Prefer parentheses prices: ### N. Name (~$12). Also accept legacy dash forms if any slip back.
 HEADING_RE = re.compile(
-    r"^###\s+(?:Bonus\s+under-\$\d+:\s+)?(?:\d+\.\s+)?(.+?)\s*—\s*(~?\$?.+)$",
+    r"^###\s+(?:Bonus\s+under-\$\d+:\s+)?(?:\d+\.\s+)?(.+?)\s*[\(]\s*(~?\$[^)]+)\s*[\)]\s*$",
     re.MULTILINE,
 )
 IMG_RE = re.compile(r"!\[([^\]]*)\]\((https?://[^)]+)\)")
 SHOP_RE = re.compile(r"\[Shop\]\((https?://[^)]+)\)")
-PRICE_NOTE_RE = re.compile(r"^\*\*(~?\$[^*]+)\*\*\s*[—–-]\s*(.+)$", re.MULTILINE)
+PRICE_NOTE_RE = re.compile(r"^\*\*(~?\$[^*]+)\*\*\s*[:.\-]\s*(.+)$", re.MULTILINE)
 FIELD_RE = re.compile(
-    r"^\*\*(Retailer|Why|URL|Alt|Shop \(raw card[^*]*\)):\*\*\s*(.+)$",
+    r"^\*\*(Retailer|Why|URL|Alt|Tracked[^:]*|price_checked_date|Shop \(raw card[^*]*\)):\*\*\s*(.+)$",
     re.MULTILINE | re.IGNORECASE,
 )
 TITLE_RE = re.compile(r"^#\s+(.+)$", re.MULTILINE)
@@ -46,8 +47,10 @@ def parse_heading(line: str) -> tuple[str, str] | None:
         if not m2:
             return None
         name = m2.group(1).strip()
-        # Try trailing price in name
-        pm = re.search(r"\s*[—–-]\s*(~?\$?.+)$", name)
+        # Trailing ($price) or legacy separators
+        pm = re.search(r"\s*[\(]\s*(~?\$[^)]+)\s*[\)]\s*$", name)
+        if not pm:
+            pm = re.search(r"\s+(?:[\u2014\u2013]|[:.])\s*(~?\$.+)$", name)  # em/en only; keep word hyphens
         if pm:
             price = pm.group(1).strip()
             name = name[: pm.start()].strip()
@@ -109,9 +112,9 @@ def parse_product_block(block: str) -> dict | None:
         "quick budget map",
         "everyday high-interest stores",
         "holiday big deal reveal spotlight",
-        "post a — x / short",
-        "post b — instagram / carousel caption",
-        "post c — tiktok / reel script (~20s)",
+        "post a, x / short",
+        "post b, instagram / carousel caption",
+        "post c, tiktok / reel script (~20s)",
         "terms note (what we follow)",
         "how the welcome bonus works",
     }
@@ -174,7 +177,7 @@ def meta_description(title: str, intro: str, products: list[dict]) -> str:
         names = ", ".join(p["name"] for p in products[:3])
         base = f"{title}: {names}, and more."
     else:
-        base = f"{title} — curated deals with affiliate disclosure."
+        base = f"{title}: curated deals with affiliate disclosure."
     if len(base) > 158:
         base = base[:155].rsplit(" ", 1)[0] + "…"
     return base
@@ -203,7 +206,7 @@ def parse_list_file(path: Path) -> dict | None:
             }
         ]
         # Pull a few store names as text-only cards if present
-        for m in re.finditer(r"^\*\*([^*]+)\*\*\s*[—–-]\s*(.+)$", text, re.MULTILINE):
+        for m in re.finditer(r"^\*\*([^*]+)\*\*\s*[. –-]\s*(.+)$", text, re.MULTILINE):
             store = m.group(1).strip()
             blurb = m.group(2).strip()
             if store.lower().startswith("how ") or "referral" in store.lower():

@@ -50,3 +50,7 @@ SKIP_PUSH=1 ./scripts/publish.sh            # build only (safe default for agent
 - Do not delete or rewrite `.git` / `node_modules` / `dist` in reorg tasks.
 - FTC disclosures; no AI branding on consumer-facing Deals and Finds chrome.
 - Rakuten referral: owned pages / owned social only.
+
+## Search Console (2026-10-29)
+- Verified via URL-prefix property https://spacexygrok.github.io/ using public/googleae2644e13b498b0f.html (never delete).
+- sitemap-index.xml submitted successfully.

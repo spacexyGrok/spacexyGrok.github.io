@@ -17,6 +17,22 @@ if [[ -f public/robots.txt ]]; then
 fi
 
 echo "==> SITE_URL=$SITE_URL"
+
+AFFILIATE="$(cd "$ROOT/.." && pwd)"
+if [[ -f "$AFFILIATE/catalog/style_check.py" ]]; then
+  echo "==> style_check (user-facing copy)"
+  python3 "$AFFILIATE/catalog/style_check.py" \
+    "$ROOT/src" \
+    "$AFFILIATE/telegraph-pages/lists" \
+    "$AFFILIATE/forumotion/content" \
+    "$AFFILIATE/social-posts" \
+    "$AFFILIATE/x-rebrand/brand.md" \
+    "$AFFILIATE/catalog/catalog.csv" \
+    "$AFFILIATE/catalog/listings" \
+    "$AFFILIATE/catalog/build_listing.py" \
+    "$ROOT/scripts/list_to_grid.py"
+fi
+
 echo "==> npm ci / install"
 if [[ -f package-lock.json ]]; then
   npm ci --prefer-offline
@@ -40,7 +56,7 @@ if ! grep -q "rel=\"sponsored nofollow\"" dist/posts/*/index.html 2>/dev/null; t
 fi
 
 if [[ "${SKIP_PUSH:-}" == "1" ]]; then
-  echo "SKIP_PUSH=1 — not committing or pushing."
+  echo "SKIP_PUSH=1: not committing or pushing."
   exit 0
 fi
 

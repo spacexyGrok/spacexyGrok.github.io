@@ -18,11 +18,18 @@ export async function getStaticPaths() {
 interface Product {
   name: string;
   price: string;
+  listPrice?: string;
+  badge?: string;
   note: string;
+  dateLine?: string;
   image: string | null;
   imageAlt: string;
   url: string;
   retailer: string;
+  anchor?: string;
+  dealExpires?: string;
+  priceCheckedDate?: string;
+  status?: string;
 }
 
 interface GiftList {
@@ -35,12 +42,25 @@ interface GiftList {
   ogImage: string | null;
   source: string;
   kind: string;
+  lastUpdated?: string;
+  validUntil?: string;
+  seoTitle?: string;
+  seoKeywords?: string[];
+  canonical?: string;
+  topic?: string;
 }
 
 const { list } = Astro.props as { list: GiftList };
 const site = Astro.site ?? new URL('https://spacexygrok.github.io');
 const pageUrl = new URL(`/gifts/${list.slug}/`, site).href;
 const ogImage = list.ogImage ?? list.products.find((p) => p.image)?.image ?? null;
+
+function fmtUpdated(iso?: string): string {
+  if (!iso) return '';
+  const d = new Date(iso + (iso.length === 10 ? 'T12:00:00' : ''));
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'America/New_York' });
+}
 
 const itemListLd = {
   '@context': 'https://schema.org',
@@ -49,6 +69,7 @@ const itemListLd = {
   description: list.description,
   url: pageUrl,
   numberOfItems: list.products.length,
+  ...(list.lastUpdated ? { dateModified: list.lastUpdated } : {}),
   itemListElement: list.products.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
@@ -64,11 +85,13 @@ const itemListLd = {
             offers: {
               '@type': 'Offer',
               priceCurrency: 'USD',
-              // Strip non-numeric for schema when possible; leave rough text otherwise
               ...(extractPrice(p.price)
                 ? { price: extractPrice(p.price), availability: 'https://schema.org/InStock' }
                 : {}),
               url: p.url,
+              ...(p.dealExpires && p.dealExpires !== 'unknown'
+                ? { priceValidUntil: p.dealExpires }
+                : {}),
             },
           },
         }
@@ -80,9 +103,16 @@ function extractPrice(raw: string): string | null {
   const m = raw.replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
   return m ? m[1] : null;
 }
+
+function badgeClass(badge?: string): string {
+  if (!badge) return '';
+  if (badge === 'Expired') return 'product-card-badge product-card-badge--expired';
+  if (badge.includes('%') || badge === 'Deal') return 'product-card-badge product-card-badge--deal';
+  return 'product-card-badge';
+}
 ---
 <BaseLayout
-  title={list.title}
+  title={list.seoTitle || list.title}
   description={list.description}
   canonicalPath={`/gifts/${list.slug}/`}
   type="article"
@@ -92,6 +122,19 @@ function extractPrice(raw: string): string | null {
   <article>
     <p class="crumb"><a href="/gifts/">Gift lists</a> / {list.title}</p>
     <h1>{list.title}</h1>
+    {(list.lastUpdated || list.validUntil) && (
+      <p class="list-updated">
+        {list.lastUpdated && (
+          <>
+            Updated <time datetime={list.lastUpdated}>{fmtUpdated(list.lastUpdated)}</time>
+          </>
+        )}
+        {list.lastUpdated && list.validUntil && list.validUntil !== 'unknown' && ' · '}
+        {list.validUntil && list.validUntil !== 'unknown' && (
+          <>Valid until <time datetime={list.validUntil}>{fmtUpdated(list.validUntil)}</time></>
+        )}
+      </p>
+    )}
     <p class="meta">{list.intro}</p>
     <div class="disclosure">
       <strong>Affiliate disclosure (#ad):</strong> {list.disclosure}
@@ -99,9 +142,10 @@ function extractPrice(raw: string): string | null {
     </div>
 
     <div class="product-grid">
-      {list.products.map((p) => (
-        <article class="product-card">
+      {list.products.map((p, i) => (
+        <article class="product-card" id={p.anchor || `item-${i + 1}`}>
           <div class="product-card-media">
+            {p.badge && <span class={badgeClass(p.badge)}>{p.badge}</span>}
             {p.image ? (
               <img
                 src={p.image}
@@ -116,16 +160,26 @@ function extractPrice(raw: string): string | null {
           </div>
           <div class="product-card-body">
             <h2 class="product-card-name">{p.name}</h2>
-            {p.price && <p class="product-card-price">{p.price}</p>}
+            {p.price && (
+              <p class="product-card-price">
+                {p.price}
+                {p.listPrice && <span class="product-card-list-price">{p.listPrice}</span>}
+              </p>
+            )}
+            {p.dateLine && <p class="product-card-date">{p.dateLine}</p>}
             {p.note && <p class="product-card-note">{p.note}</p>}
-            <a
-              class="product-card-btn"
-              href={p.url}
-              rel="sponsored nofollow noopener"
-              target="_blank"
-            >
-              See deal
-            </a>
+            {p.badge === 'Expired' ? (
+              <span class="product-card-btn product-card-btn--disabled" aria-disabled="true">Expired</span>
+            ) : (
+              <a
+                class="product-card-btn"
+                href={p.url}
+                rel="sponsored nofollow noopener"
+                target="_blank"
+              >
+                See deal
+              </a>
+            )}
           </div>
         </article>
       ))}

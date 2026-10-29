@@ -2,13 +2,13 @@
   "slug": "10-holiday-gifts-for-her-under-50",
   "title": "10 Holiday Gifts for Her Under $50",
   "description": "Beauty, scent, and cozy under-$50 picks weighted toward Sephora (higher Linktree commission) plus Target / Amazon staples. Want the full-size NEST…",
-  "intro": "Beauty, scent, and cozy under-$50 picks weighted toward Sephora (higher Linktree commission) plus Target / Amazon staples. Want the full-size NEST Madagascar Vanilla EDP (~$98)? It’s on the shop — listed at the bottom as a stretch gift.",
-  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change — check the retailer for live pricing.",
+  "intro": "Beauty, scent, and cozy under-$50 picks weighted toward Sephora (higher Linktree commission) plus Target / Amazon staples. Want the full-size NEST Madagascar Vanilla EDP (~$98)? It is on the shop, listed at the bottom as a stretch gift.",
+  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change. Check the retailer for live pricing.",
   "products": [
     {
       "name": "LANEIGE Lip Sleeping Mask",
       "price": "~$25",
-      "note": "The under-tree beauty staple — overnight hydration, easy to wrap, zero size stress.",
+      "note": "The under-tree beauty staple. Overnight hydration, easy to wrap, zero size stress.",
       "image": "https://www.sephora.com/productimages/sku/s3000890-main-zoom-1.jpg",
       "imageAlt": "LANEIGE Lip Sleeping Mask",
       "url": "https://www.sephora.com/product/lip-sleeping-mask-P420652",
@@ -33,13 +33,13 @@
       "retailer": "Sephora (Linktree earn wrapper)"
     },
     {
-      "name": "NEST Madagascar Vanilla Classic Candle",
+      "name": "NEST New York Bamboo Classic Candle",
       "price": "~$50",
-      "note": "Same scent family as the EDP for home — sits at the under-$50 ceiling.",
-      "image": null,
-      "imageAlt": "NEST Madagascar Vanilla Classic Candle",
-      "url": "https://www.nestnewyork.com/collections/classic-candle",
-      "retailer": "Nest / Nordstrom / specialty beauty"
+      "note": "Brand-site classic candle (Madagascar Vanilla Nordstrom PDP was bot-walled; Bamboo is the same $50 classic size).",
+      "image": "https://www.nestnewyork.com/cdn/shop/files/NESTNY_BM_CAN_CL-1_white-background.jpg",
+      "imageAlt": "NEST New York Bamboo Classic Candle",
+      "url": "https://www.nestnewyork.com/products/bamboo-classic-candle-1",
+      "retailer": "NEST New York"
     },
     {
       "name": "Sol de Janeiro Brazilian Bum Bum Cream (full or mini)",
@@ -60,22 +60,22 @@
       "retailer": "Target (on Linktree Shop)"
     },
     {
-      "name": "Urban Outfitters Keith Haring Crew Socks",
-      "price": "~$12",
-      "note": "Fun, cheap stocking filler with personality (UO = higher Linktree commission).",
-      "image": null,
-      "imageAlt": "Urban Outfitters Keith Haring Crew Socks",
-      "url": "https://www.urbanoutfitters.com/shop/keith-haring-dancing-flower-crew-sock",
-      "retailer": "Urban Outfitters"
+      "name": "Happy Socks x Keith Haring Unisex Sock Box Set",
+      "price": "~$14.98",
+      "note": "Graphic Keith Haring socks via Amazon after Urban Outfitters returned 403.",
+      "image": "https://m.media-amazon.com/images/I/8169bxlkFnL._AC_SL1500_.jpg",
+      "imageAlt": "Happy Socks x Keith Haring Unisex Sock Box Set",
+      "url": "https://www.amazon.com/dp/B07WSJJCDF",
+      "retailer": "Amazon"
     },
     {
-      "name": "Juicy Couture Plush Reversible Sherpa Throw",
-      "price": "~$45",
-      "note": "Movie-night blanket that feels luxe without Barefoot Dreams pricing — live Linktree item.",
-      "image": null,
-      "imageAlt": "Juicy Couture Plush Reversible Sherpa Throw",
-      "url": "https://juicycouture.com/products/juicy-couture-plush-reversible-sherpa-throw-blanket-black-diagonal",
-      "retailer": "Juicy Couture (Rakuten via Linktree)"
+      "name": "Threshold Plush Throw Faux Shearling Reverse",
+      "price": "~$15",
+      "note": "Sherpa-soft throw after Juicy returned 429; verified Target PDP and price.",
+      "image": "https://target.scene7.com/is/image/Target/GUEST_7a2bdcec-50e5-4ca7-88ad-770b29cbb203",
+      "imageAlt": "Threshold Plush Throw Faux Shearling Reverse",
+      "url": "https://www.target.com/p/plush-throw-blanket-faux-shearling-reverse-ivory-threshold-8482/-/A-90516169",
+      "retailer": "Target"
     },
     {
       "name": "Goodfellow & Co / Target self-care add-on (touch gloves or beanie for cold walks)",
@@ -89,7 +89,7 @@
     {
       "name": "LANEIGE Icons To Go Set",
       "price": "~$27",
-      "note": "Travel-ready LANEIGE icons set — live Linktree substitution for Midnight Minis.",
+      "note": "Travel-ready LANEIGE icons set. Live Linktree substitution for Midnight Minis.",
       "image": "https://www.sephora.com/productimages/sku/s2743185-main-zoom.jpg",
       "imageAlt": "LANEIGE Icons To Go Set",
       "url": "https://www.sephora.com/product/laneige-icons-to-go-set-P510608",

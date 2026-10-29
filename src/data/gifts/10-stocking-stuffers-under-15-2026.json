@@ -1,9 +1,9 @@
 {
   "slug": "10-stocking-stuffers-under-15-2026",
   "title": "10 Stocking Stuffers Under $15 (2026)",
-  "description": "Strict under-$15 before tax — Target, Amazon, Sephora minis, UO, adidas when on sale.",
-  "intro": "Strict under-$15 before tax — Target, Amazon, Sephora minis, UO, adidas when on sale.",
-  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change — check the retailer.",
+  "description": "Strict under-$15 before tax. Target, Amazon, Sephora minis, UO, adidas when on sale.",
+  "intro": "Strict under-$15 before tax. Target, Amazon, Sephora minis, UO, adidas when on sale.",
+  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change. Check the retailer.",
   "products": [
     {
       "name": "Goodfellow & Co Classic Knit Touch Gloves",
@@ -15,17 +15,17 @@
       "retailer": "Target"
     },
     {
-      "name": "Urban Outfitters Keith Haring Crew Socks",
-      "price": "~$12",
-      "note": "Personality without clutter.",
-      "image": null,
-      "imageAlt": "Urban Outfitters Keith Haring Crew Socks",
-      "url": "https://www.urbanoutfitters.com/shop/keith-haring-dancing-flower-crew-sock",
-      "retailer": "Urban Outfitters"
+      "name": "Happy Socks x Keith Haring Unisex Sock Box Set",
+      "price": "~$14.98",
+      "note": "Graphic Keith Haring socks via Amazon after Urban Outfitters returned 403.",
+      "image": "https://m.media-amazon.com/images/I/8169bxlkFnL._AC_SL1500_.jpg",
+      "imageAlt": "Happy Socks x Keith Haring Unisex Sock Box Set",
+      "url": "https://www.amazon.com/dp/B07WSJJCDF",
+      "retailer": "Amazon"
     },
     {
-      "name": "Rare Beauty Soft Pinch Liquid Blush Mini",
-      "price": "~$16 (stretch; watch Sephora sales / points)",
+      "name": "Rare Beauty Soft Pinch Liquid Blush Mini (~$16 (stretch; watch Sephora sales / points))",
+      "price": "",
       "note": "Mini beauty that feels premium; skip if strict $15.",
       "image": "https://www.sephora.com/productimages/sku/s3000171-main-zoom-us.jpg",
       "imageAlt": "Rare Beauty Soft Pinch Liquid Blush Mini",
@@ -33,13 +33,13 @@
       "retailer": "Sephora"
     },
     {
-      "name": "Sephora Collection hand cream / lip set mini",
-      "price": "~$8–14",
-      "note": "Reliable stocking filler from the same trip as bigger gifts.",
-      "image": null,
-      "imageAlt": "Sephora Collection hand cream / lip set mini",
-      "url": "https://www.sephora.com/shop/gifts-under-25",
-      "retailer": "Sephora"
+      "name": "e.l.f. Glow Reviver Lip Oil",
+      "price": "~$9",
+      "note": "Popular beauty mini; replaces non-PDP hub links.",
+      "image": "https://target.scene7.com/is/image/Target/GUEST_beb60da6-6632-4e14-a0a9-bed699be2734",
+      "imageAlt": "e.l.f. Glow Reviver Lip Oil",
+      "url": "https://www.target.com/p/e-l-f-glow-reviver-lip-oil-0-25-fl-oz/-/A-89381079",
+      "retailer": "Target"
     },
     {
       "name": "Anker USB-C to Lightning / USB-C cable (short)",
@@ -51,13 +51,13 @@
       "retailer": "Amazon / Target"
     },
     {
-      "name": "ChapStick / Burt’s Bees lip balm multipack",
-      "price": "~$5–10",
-      "note": "Winter essential; zero size stress.",
-      "image": null,
-      "imageAlt": "ChapStick / Burt’s Bees lip balm multipack",
-      "url": "https://www.target.com/s?searchTerm=burts+bees+lip+balm",
-      "retailer": "Target / Amazon"
+      "name": "Burt's Bees Beeswax Lip Balm 4ct",
+      "price": "~$10.49",
+      "note": "Winter essential multipack; zero size stress.",
+      "image": "https://target.scene7.com/is/image/Target/GUEST_68d5b5f6-42f5-4845-b3ad-af1288ed3c06",
+      "imageAlt": "Burt's Bees Beeswax Lip Balm 4ct",
+      "url": "https://www.target.com/p/burt-39-s-bees-lip-balm-beeswax-4ct-0-6oz/-/A-13587010",
+      "retailer": "Target"
     },
     {
       "name": "Playing cards / travel card game",
@@ -69,17 +69,17 @@
       "retailer": "Amazon / Target"
     },
     {
-      "name": "Mini hand sanitizer + sleeve",
-      "price": "~$5–10",
-      "note": "Practical stocking padding.",
-      "image": null,
-      "imageAlt": "Mini hand sanitizer + sleeve",
-      "url": "https://www.target.com/s?searchTerm=mini+hand+sanitizer",
+      "name": "Purell Naturals Gel Trial Size 2 fl oz",
+      "price": "~$1.99",
+      "note": "Practical stocking padding in a real PDP.",
+      "image": "https://target.scene7.com/is/image/Target/GUEST_6d6b24d3-8122-4787-a7d9-6a46c0e0d849",
+      "imageAlt": "Purell Naturals Gel Trial Size 2 fl oz",
+      "url": "https://www.target.com/p/purell-naturals-gel-trial-size-2oz/-/A-50520361",
       "retailer": "Target"
     },
     {
-      "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
-      "price": "~$24 (over $15 — use as upgrade / split gift)",
+      "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579) (~$24 (over $15, use as upgrade / split gift))",
+      "price": "",
       "note": "When the budget stretches past strict stocking: live Linktree 3-pack. For strict under-$15 keep a single-pair search.",
       "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d8b9a240b8845ce8106e85f07dbcfd5_9366/Unisex_Originals_Comfort_2.0_3-Pack_Crew_Grey_KL3579_01_standard.jpg",
       "imageAlt": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
@@ -87,12 +87,12 @@
       "retailer": "adidas (Impact via Linktree)"
     },
     {
-      "name": "Candy / chocolate gift sleeve under $10",
-      "price": "~$5–10",
-      "note": "Classic filler — pick a nicer bar than bulk hard candy.",
-      "image": null,
-      "imageAlt": "Candy / chocolate gift sleeve under $10",
-      "url": "https://www.target.com/c/candy/-/N-5xt0r",
+      "name": "Lindt LINDOR Milk Chocolate Candy Truffles Bag 5.1oz",
+      "price": "~$6.99",
+      "note": "Classic chocolate filler nicer than bulk hard candy.",
+      "image": "https://target.scene7.com/is/image/Target/GUEST_c6a8ec79-ce56-4bae-b013-cd0202045a50",
+      "imageAlt": "Lindt LINDOR Milk Chocolate Candy Truffles Bag 5.1oz",
+      "url": "https://www.target.com/p/lindor-lindt-milk-chocolate-candy-truffles-5-1oz/-/A-93410657",
       "retailer": "Target"
     }
   ],

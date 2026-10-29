@@ -1,9 +1,9 @@
 {
   "slug": "10-holiday-gifts-for-dad-2026",
   "title": "10 Holiday Gifts for Dad (2026)",
-  "description": "Practical dad gifts weighted toward Amazon, adidas, Target, and Abercrombie — useful over novelty.",
-  "intro": "Practical dad gifts weighted toward Amazon, adidas, Target, and Abercrombie — useful over novelty.",
-  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change — check the retailer.",
+  "description": "Practical dad gifts weighted toward Amazon, adidas, Target, and Abercrombie, useful over novelty.",
+  "intro": "Practical dad gifts weighted toward Amazon, adidas, Target, and Abercrombie, useful over novelty.",
+  "disclosure": "Some links are affiliate / partner links (including Linktree Shop wrappers). If you buy through them, I may earn a commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases. Prices are approximate as of late Oct 2026 and change, check the retailer.",
   "products": [
     {
       "name": "Carhartt Men's Iconic A18 Watch Cap",
@@ -17,7 +17,7 @@
     {
       "name": "Darn Tough Vermont Men's Hiker Micro Crew",
       "price": "~$24.95",
-      "note": "Lifetime-warranty socks — the anti-junk gift.",
+      "note": "Lifetime-warranty socks, the anti-junk gift.",
       "image": "https://m.media-amazon.com/images/I/8137qAJzyOL._AC_SL1000_.jpg",
       "imageAlt": "Darn Tough Vermont Men's Hiker Micro Crew",
       "url": "https://www.amazon.com/dp/B096M211N7",
@@ -26,7 +26,7 @@
     {
       "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "price": "~$24",
-      "note": "Everyday rotation he’ll actually finish — live Linktree SKU KL3579.",
+      "note": "Everyday rotation he’ll actually finish, live Linktree SKU KL3579.",
       "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d8b9a240b8845ce8106e85f07dbcfd5_9366/Unisex_Originals_Comfort_2.0_3-Pack_Crew_Grey_KL3579_01_standard.jpg",
       "imageAlt": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "url": "https://www.adidas.com/us/unisex-originals-comfort-2.0-3-pack-crew/KL3579.html",
@@ -35,7 +35,7 @@
     {
       "name": "Amazon Essentials Men's Straight-Fit Chino Joggers",
       "price": "~$24",
-      "note": "Chino look, jogger comfort — weekend uniform upgrade.",
+      "note": "Chino look, jogger comfort, weekend uniform upgrade.",
       "image": "https://m.media-amazon.com/images/I/71CLEoG-EbL._AC_SL1000_.jpg",
       "imageAlt": "Amazon Essentials Men's Straight-Fit Chino Joggers",
       "url": "https://www.amazon.com/dp/B07F288BF1",
@@ -60,9 +60,9 @@
       "retailer": "Amazon / AeroPress"
     },
     {
-      "name": "Anker Zolo 20000mAh 30W Power Bank",
-      "price": "~$35.99 (upgrade from wall charger)",
-      "note": "Travel power he’ll steal for flights — live Linktree ASIN B0CZ9JLRC6. (Wall 20W charger still needs-add if you want a strict under-$20 slot.)",
+      "name": "Anker Zolo 20000mAh 30W Power Bank (~$35.99 (upgrade from wall charger))",
+      "price": "",
+      "note": "Travel power he’ll steal for flights, live Linktree ASIN B0CZ9JLRC6. (Wall 20W charger still needs-add if you want a strict under-$20 slot.)",
       "image": "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1000_.jpg",
       "imageAlt": "Anker Zolo 20000mAh 30W Power Bank",
       "url": "https://www.amazon.com/dp/B0CZ9JLRC6",
@@ -78,18 +78,18 @@
       "retailer": "Target"
     },
     {
-      "name": "Abercrombie & Fitch Men's Trail Fleece or similar cozy layer",
-      "price": "~$40–70 (confirm sale)",
-      "note": "Soft layer dad won’t return; watch A&F sales.",
-      "image": null,
-      "imageAlt": "Abercrombie & Fitch Men's Trail Fleece or similar cozy layer",
-      "url": "https://www.abercrombie.com/shop/us/mens-sweatshirts-and-hoodies",
-      "retailer": "Abercrombie"
+      "name": "Amazon Essentials Men's Quarter-Zip Polar Fleece",
+      "price": "~$19",
+      "note": "Cozy layer that replaces the Abercrombie category hub (A&F PDPs were bot-walled from this box).",
+      "image": "https://m.media-amazon.com/images/I/716K+Vl6-YL._AC_SL1500_.jpg",
+      "imageAlt": "Amazon Essentials Men's Quarter-Zip Polar Fleece",
+      "url": "https://www.amazon.com/dp/B07P3N4R36",
+      "retailer": "Amazon"
     },
     {
       "name": "Tile Mate (2020) 2-Pack Bluetooth Tracker",
       "price": "~$61.52",
-      "note": "Keys and wallet finder pair — 2-pack is over a strict under-$30 budget but already live on Linktree.",
+      "note": "Keys and wallet finder pair. 2-pack is over a strict under-$30 budget but already live on Linktree.",
       "image": "https://m.media-amazon.com/images/I/41vjzlrSxDL._AC_SL1000_.jpg",
       "imageAlt": "Tile Mate (2020) 2-Pack Bluetooth Tracker",
       "url": "https://www.amazon.com/dp/B08BNVQDWT",
