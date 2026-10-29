@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const updated = post.data.updatedDate ?? post.data.pubDate;
+---
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalPath={`/posts/${post.id}/`}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+>
+  <article class="prose">
+    <h1>{post.data.title}</h1>
+    <p class="meta">
+      Published
+      <time datetime={post.data.pubDate.toISOString()}>
+        {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </time>
+      {post.data.updatedDate && (
+        <>
+          {' · Updated '}
+          <time datetime={updated.toISOString()}>
+            {updated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+        </>
+      )}
+    </p>
+    <Content />
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: updated.toISOString(),
+    mainEntityOfPage: new URL(`/posts/${post.id}/`, Astro.site ?? 'https://example.github.io').href,
+  })} />
+</BaseLayout>

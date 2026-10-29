@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout
+  title="Free AI tools & gift guides"
+  description="SEO-friendly lists of free AI tools and practical gift/deal guides. Clear affiliate disclosures; honest notes on free-tier limits."
+  canonicalPath="/"
+>
+  <h1>Free AI tools & gift guides</h1>
+  <p class="meta">
+    Owned static site for organic search. Affiliate links are marked
+    <code>rel="sponsored nofollow"</code> and disclosed on every monetized page.
+  </p>
+  <div class="disclosure">
+    <strong>Affiliate disclosure:</strong> Some links may earn a commission at no extra cost to you.
+    Full details on the <a href="/disclosure/">disclosure page</a>.
+  </div>
+  <h2>Latest posts</h2>
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a class="title" href={`/posts/${post.id}/`}>{post.data.title}</a>
+        <div class="meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+          {' · '}
+          {post.data.description}
+        </div>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

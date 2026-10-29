@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Honest free AI tool lists and gift/deal guides with clear affiliate disclosures.',
+  canonicalPath = Astro.url.pathname,
+  type = 'website',
+  publishedTime,
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://example.github.io');
+const canonical = new URL(canonicalPath.replace(/\/?$/, '/') === '//' ? '/' : canonicalPath, site).href;
+const fullTitle = title.includes('|') ? title : `${title} | Free AI & Gift Guides`;
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <nav aria-label="Primary">
+          <a class="brand" href="/">Free AI & Gift Guides</a>
+          <a href="/posts/free-ai-tools-2026/">AI tools</a>
+          <a href="/posts/holiday-gift-guide-2026/">Gift guide</a>
+          <a href="/disclosure/">Disclosure</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site">
+        <p>
+          Affiliate links use <code>rel="sponsored nofollow"</code>. See the
+          <a href="/disclosure/">affiliate disclosure</a>. Not financial advice.
+        </p>
+        <p>&copy; {new Date().getFullYear()} · Built as a static site for SEO ownership.</p>
+      </footer>
+    </div>
+  </body>
+</html>
