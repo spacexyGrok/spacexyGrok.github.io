@@ -2,25 +2,26 @@
 
 Primary SEO home for free AI tool lists and gift/deal guides. Affiliate links use `rel="sponsored nofollow"`.
 
+**Live:** https://spacexygrok.github.io/  
+**Repo:** https://github.com/spacexyGrok/spacexyGrok.github.io
+
 ## Local
 
 ```bash
 npm install
 npm run dev
-SITE_URL=https://YOURUSER.github.io npm run build
-# or
-./scripts/publish.sh
+SITE_URL=https://spacexygrok.github.io npm run build
 ```
 
-## Deploy (user)
+## Publish (one command)
 
-Do **not** expect this folder to auto-deploy. Recommended free hosts:
+```bash
+./scripts/publish.sh "post: your message"
+```
 
-1. **GitHub Pages** (vault already has a GitHub account) — `USERNAME.github.io` or project pages.
-2. **Cloudflare Pages** — connect the same repo; free custom domain later.
-3. **Netlify** — same pattern; watch free bandwidth credits.
+Builds with `SITE_URL=https://spacexygrok.github.io`, commits if dirty, pushes `main`. GitHub Actions deploys Pages.
 
-Set `SITE_URL` to the live origin before production builds so canonical tags and `robots.txt` sitemap match.
+`SKIP_PUSH=1 ./scripts/publish.sh` builds only.
 
 ## Content
 
