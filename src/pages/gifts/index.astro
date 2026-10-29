@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import indexData from '../../data/gifts/index.json';
+
+const lists = indexData;
+const description =
+  'Deals and Finds gift lists — product grids with prices, notes, and disclosed affiliate deals.';
+---
+<BaseLayout
+  title="Gift lists"
+  description={description}
+  canonicalPath="/gifts/"
+  wide={true}
+>
+  <h1>Gift lists</h1>
+  <p class="meta">
+    Deals and Finds product grids. Every monetized page includes an FTC-style disclosure; affiliate CTAs use <code>rel="sponsored nofollow noopener"</code>.
+  </p>
+  <div class="disclosure">
+    <strong>Affiliate disclosure (#ad):</strong> Some links may earn a commission at no extra cost to you.
+    As an Amazon Associate I earn from qualifying purchases. Full details on the
+    <a href="/disclosure/">disclosure page</a>.
+  </div>
+  <div class="gift-index-grid">
+    {lists.map((list) => (
+      <a class="gift-tile" href={`/gifts/${list.slug}/`}>
+        <div class="gift-tile-media">
+          {list.image ? (
+            <img src={list.image} alt="" loading="lazy" referrerpolicy="no-referrer" />
+          ) : (
+            <div class="gift-tile-placeholder" aria-hidden="true">{list.productCount} picks</div>
+          )}
+        </div>
+        <div class="gift-tile-body">
+          <h2 class="gift-tile-title">{list.title}</h2>
+          <p class="gift-tile-desc">{list.description}</p>
+          <span class="gift-tile-meta">{list.productCount} items</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

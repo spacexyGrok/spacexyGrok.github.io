@@ -1,25 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import giftIndex from '../data/gifts/index.json';
 
 const posts = (await getCollection('posts'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const giftLists = giftIndex.filter((g) => g.kind === 'gift-list').slice(0, 6);
 ---
 <BaseLayout
-  title="Free AI tools & gift guides"
-  description="SEO-friendly lists of free AI tools and practical gift/deal guides. Clear affiliate disclosures; honest notes on free-tier limits."
+  title="Deals and Finds"
+  description="Practical gift lists, cash-back picks, and deals-first shopping guides. Clear affiliate disclosures on every monetized page."
   canonicalPath="/"
 >
-  <h1>Free AI tools & gift guides</h1>
+  <h1>Deals and Finds</h1>
   <p class="meta">
-    Owned static site for organic search. Affiliate links are marked
+    Deals-first gift lists and shopping guides. Affiliate links are marked
     <code>rel="sponsored nofollow"</code> and disclosed on every monetized page.
   </p>
   <div class="disclosure">
-    <strong>Affiliate disclosure:</strong> Some links may earn a commission at no extra cost to you.
+    <strong>Affiliate disclosure (#ad):</strong> Some links may earn a commission at no extra cost to you.
     Full details on the <a href="/disclosure/">disclosure page</a>.
   </div>
+
+  <h2>Gift lists</h2>
+  <ul class="post-list">
+    {giftLists.map((list) => (
+      <li>
+        <a class="title" href={`/gifts/${list.slug}/`}>{list.title}</a>
+        <div class="meta">{list.productCount} picks · {list.description}</div>
+      </li>
+    ))}
+  </ul>
+  <p><a href="/gifts/">See all gift lists →</a></p>
+
   <h2>Latest posts</h2>
   <ul class="post-list">
     {posts.map((post) => (

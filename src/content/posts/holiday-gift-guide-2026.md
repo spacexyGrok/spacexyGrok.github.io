@@ -14,7 +14,7 @@ tags: ["gift-guide", "amazon", "sephora", "holiday"]
 
 A short, practical list for late-fall / holiday 2026: warm outdoor gear and everyday comfort for him, plus a standout vanilla fragrance and cozy beauty / home picks for her (or anyone who wants a warmer scent). Mix of under-$30 staples and a few nicer gifts.
 
-Looking for tools instead? See [Free AI Tools (2026)](/posts/free-ai-tools-2026/).
+More lists: [Gift lists hub](/gifts/). Older tools roundup (kept for search): [Free AI Tools (2026)](/posts/free-ai-tools-2026/).
 
 ---
 

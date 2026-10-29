@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import indexData from '../../data/gifts/index.json';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../data/gifts/*.json', { eager: true });
+  return indexData.map((entry) => {
+    const key = `../../data/gifts/${entry.slug}.json`;
+    const mod = modules[key] as { default: GiftList } | GiftList;
+    const data = (mod && 'default' in (mod as object) ? (mod as { default: GiftList }).default : mod) as GiftList;
+    return {
+      params: { slug: entry.slug },
+      props: { list: data },
+    };
+  });
+}
+
+interface Product {
+  name: string;
+  price: string;
+  note: string;
+  image: string | null;
+  imageAlt: string;
+  url: string;
+  retailer: string;
+}
+
+interface GiftList {
+  slug: string;
+  title: string;
+  description: string;
+  intro: string;
+  disclosure: string;
+  products: Product[];
+  ogImage: string | null;
+  source: string;
+  kind: string;
+}
+
+const { list } = Astro.props as { list: GiftList };
+const site = Astro.site ?? new URL('https://spacexygrok.github.io');
+const pageUrl = new URL(`/gifts/${list.slug}/`, site).href;
+const ogImage = list.ogImage ?? list.products.find((p) => p.image)?.image ?? null;
+
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: list.title,
+  description: list.description,
+  url: pageUrl,
+  numberOfItems: list.products.length,
+  itemListElement: list.products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: p.name,
+    url: p.url,
+    ...(p.image
+      ? {
+          item: {
+            '@type': 'Product',
+            name: p.name,
+            image: p.image,
+            description: p.note,
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'USD',
+              // Strip non-numeric for schema when possible; leave rough text otherwise
+              ...(extractPrice(p.price)
+                ? { price: extractPrice(p.price), availability: 'https://schema.org/InStock' }
+                : {}),
+              url: p.url,
+            },
+          },
+        }
+      : {}),
+  })),
+};
+
+function extractPrice(raw: string): string | null {
+  const m = raw.replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
+  return m ? m[1] : null;
+}
+---
+<BaseLayout
+  title={list.title}
+  description={list.description}
+  canonicalPath={`/gifts/${list.slug}/`}
+  type="article"
+  ogImage={ogImage}
+  wide={true}
+>
+  <article>
+    <p class="crumb"><a href="/gifts/">Gift lists</a> / {list.title}</p>
+    <h1>{list.title}</h1>
+    <p class="meta">{list.intro}</p>
+    <div class="disclosure">
+      <strong>Affiliate disclosure (#ad):</strong> {list.disclosure}
+      {' '}See the <a href="/disclosure/">full disclosure</a>.
+    </div>
+
+    <div class="product-grid">
+      {list.products.map((p) => (
+        <article class="product-card">
+          <div class="product-card-media">
+            {p.image ? (
+              <img
+                src={p.image}
+                alt={p.imageAlt || p.name}
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                decoding="async"
+              />
+            ) : (
+              <div class="product-card-placeholder" aria-hidden="true">No image yet</div>
+            )}
+          </div>
+          <div class="product-card-body">
+            <h2 class="product-card-name">{p.name}</h2>
+            {p.price && <p class="product-card-price">{p.price}</p>}
+            {p.note && <p class="product-card-note">{p.note}</p>}
+            <a
+              class="product-card-btn"
+              href={p.url}
+              rel="sponsored nofollow noopener"
+              target="_blank"
+            >
+              See deal
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+</BaseLayout>
