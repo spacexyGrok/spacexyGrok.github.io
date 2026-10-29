@@ -9,7 +9,7 @@
       "name": "Goodfellow & Co Classic Knit Touch Gloves",
       "price": "~$6",
       "note": "Phone-friendly; stacks with a beanie.",
-      "image": null,
+      "image": "https://target.scene7.com/is/image/Target/GUEST_0c42c7a5-364c-4b1b-9bb2-45ef024ec362",
       "imageAlt": "Goodfellow & Co Classic Knit Touch Gloves",
       "url": "https://www.target.com/p/men-39-s-classic-knit-touch-gloves-goodfellow-38-co-8482-black-one-size-fits-most/-/A-95148012",
       "retailer": "Target"
@@ -27,7 +27,7 @@
       "name": "Rare Beauty Soft Pinch Liquid Blush Mini",
       "price": "~$16 (stretch; watch Sephora sales / points)",
       "note": "Mini beauty that feels premium; skip if strict $15.",
-      "image": null,
+      "image": "https://www.sephora.com/productimages/sku/s3000171-main-zoom-us.jpg",
       "imageAlt": "Rare Beauty Soft Pinch Liquid Blush Mini",
       "url": "https://www.sephora.com/product/mini-soft-pinch-liquid-blush-P508264",
       "retailer": "Sephora"
@@ -45,7 +45,7 @@
       "name": "Anker USB-C to Lightning / USB-C cable (short)",
       "price": "~$10–15",
       "note": "Everyone needs another cable.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/51o5mfoIUNL._AC_SL1000_.jpg",
       "imageAlt": "Anker USB-C to Lightning / USB-C cable (short)",
       "url": "https://www.amazon.com/s?k=Anker+USB-C+cable+6ft",
       "retailer": "Amazon / Target"
@@ -63,7 +63,7 @@
       "name": "Playing cards / travel card game",
       "price": "~$5–12",
       "note": "Family-trip and waiting-room hero.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61ILEV1DPPL._AC_SL1000_.jpg",
       "imageAlt": "Playing cards / travel card game",
       "url": "https://www.amazon.com/s?k=bicycle+playing+cards",
       "retailer": "Amazon / Target"
@@ -81,7 +81,7 @@
       "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "price": "~$24 (over $15 — use as upgrade / split gift)",
       "note": "When the budget stretches past strict stocking: live Linktree 3-pack. For strict under-$15 keep a single-pair search.",
-      "image": null,
+      "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d8b9a240b8845ce8106e85f07dbcfd5_9366/Unisex_Originals_Comfort_2.0_3-Pack_Crew_Grey_KL3579_01_standard.jpg",
       "imageAlt": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "url": "https://www.adidas.com/us/unisex-originals-comfort-2.0-3-pack-crew/KL3579.html",
       "retailer": "adidas (Impact via Linktree)"
@@ -96,7 +96,7 @@
       "retailer": "Target"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://target.scene7.com/is/image/Target/GUEST_0c42c7a5-364c-4b1b-9bb2-45ef024ec362",
   "source": "10-stocking-stuffers-under-15-2026.md",
   "kind": "gift-list"
 }

@@ -9,7 +9,7 @@
       "name": "Carhartt Men's Iconic A18 Watch Cap",
       "price": "~$19.99",
       "note": "The beanie that survives the garage, the dog walk, and the football game.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/91ZUbCD3SsL._AC_SL1000_.jpg",
       "imageAlt": "Carhartt Men's Iconic A18 Watch Cap",
       "url": "https://www.amazon.com/dp/B002G9UDYG",
       "retailer": "Amazon"
@@ -18,7 +18,7 @@
       "name": "Darn Tough Vermont Men's Hiker Micro Crew",
       "price": "~$24.95",
       "note": "Lifetime-warranty socks — the anti-junk gift.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/8137qAJzyOL._AC_SL1000_.jpg",
       "imageAlt": "Darn Tough Vermont Men's Hiker Micro Crew",
       "url": "https://www.amazon.com/dp/B096M211N7",
       "retailer": "Amazon"
@@ -27,7 +27,7 @@
       "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "price": "~$24",
       "note": "Everyday rotation he’ll actually finish — live Linktree SKU KL3579.",
-      "image": null,
+      "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d8b9a240b8845ce8106e85f07dbcfd5_9366/Unisex_Originals_Comfort_2.0_3-Pack_Crew_Grey_KL3579_01_standard.jpg",
       "imageAlt": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "url": "https://www.adidas.com/us/unisex-originals-comfort-2.0-3-pack-crew/KL3579.html",
       "retailer": "adidas (Impact via Linktree)"
@@ -36,7 +36,7 @@
       "name": "Amazon Essentials Men's Straight-Fit Chino Joggers",
       "price": "~$24",
       "note": "Chino look, jogger comfort — weekend uniform upgrade.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71CLEoG-EbL._AC_SL1000_.jpg",
       "imageAlt": "Amazon Essentials Men's Straight-Fit Chino Joggers",
       "url": "https://www.amazon.com/dp/B07F288BF1",
       "retailer": "Amazon"
@@ -45,7 +45,7 @@
       "name": "Lodge 10.25\" Pre-Seasoned Cast Iron Skillet",
       "price": "~$25",
       "note": "One pan that outlives trends; steak-night upgrade.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71iH2iNxTZL._AC_SL1000_.jpg",
       "imageAlt": "Lodge 10.25\" Pre-Seasoned Cast Iron Skillet",
       "url": "https://www.amazon.com/dp/B00006JSUA",
       "retailer": "Amazon"
@@ -54,7 +54,7 @@
       "name": "AeroPress Original Coffee Maker",
       "price": "~$38–40",
       "note": "Fast, clean cup without a countertop machine.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61u3sW4Vx4L._AC_SL1000_.jpg",
       "imageAlt": "AeroPress Original Coffee Maker",
       "url": "https://www.amazon.com/dp/B0047BIWSK",
       "retailer": "Amazon / AeroPress"
@@ -63,7 +63,7 @@
       "name": "Anker Zolo 20000mAh 30W Power Bank",
       "price": "~$35.99 (upgrade from wall charger)",
       "note": "Travel power he’ll steal for flights — live Linktree ASIN B0CZ9JLRC6. (Wall 20W charger still needs-add if you want a strict under-$20 slot.)",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1000_.jpg",
       "imageAlt": "Anker Zolo 20000mAh 30W Power Bank",
       "url": "https://www.amazon.com/dp/B0CZ9JLRC6",
       "retailer": "Amazon (Linktree earn wrapper)"
@@ -72,7 +72,7 @@
       "name": "Goodfellow & Co Classic Knit Touch Gloves",
       "price": "~$6",
       "note": "Phone-friendly gloves; stack with a beanie for under $25.",
-      "image": null,
+      "image": "https://target.scene7.com/is/image/Target/GUEST_0c42c7a5-364c-4b1b-9bb2-45ef024ec362",
       "imageAlt": "Goodfellow & Co Classic Knit Touch Gloves",
       "url": "https://www.target.com/p/men-39-s-classic-knit-touch-gloves-goodfellow-38-co-8482-black-one-size-fits-most/-/A-95148012",
       "retailer": "Target"
@@ -90,13 +90,13 @@
       "name": "Tile Mate (2020) 2-Pack Bluetooth Tracker",
       "price": "~$61.52",
       "note": "Keys and wallet finder pair — 2-pack is over a strict under-$30 budget but already live on Linktree.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/41vjzlrSxDL._AC_SL1000_.jpg",
       "imageAlt": "Tile Mate (2020) 2-Pack Bluetooth Tracker",
       "url": "https://www.amazon.com/dp/B08BNVQDWT",
       "retailer": "Amazon (Linktree earn wrapper)"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://m.media-amazon.com/images/I/91ZUbCD3SsL._AC_SL1000_.jpg",
   "source": "10-holiday-gifts-for-dad-2026.md",
   "kind": "gift-list"
 }

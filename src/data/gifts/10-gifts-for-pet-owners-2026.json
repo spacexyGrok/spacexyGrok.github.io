@@ -9,7 +9,7 @@
       "name": "KONG Classic Dog Toy (Medium)",
       "price": "~$12",
       "note": "Stuffable chew that lasts; the default “good dog gift.”",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/610m3wlIBiL._AC_SL1000_.jpg",
       "imageAlt": "KONG Classic Dog Toy (Medium)",
       "url": "https://www.amazon.com/dp/B000AYN7LU",
       "retailer": "Amazon / Petco"
@@ -27,7 +27,7 @@
       "name": "Slow feeder / puzzle bowl",
       "price": "~$12–25",
       "note": "Slows scarf-and-barf dinners.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/7119a2QAwiL._AC_SL1000_.jpg",
       "imageAlt": "Slow feeder / puzzle bowl",
       "url": "https://www.amazon.com/s?k=dog+slow+feeder+bowl",
       "retailer": "Amazon / Target"
@@ -36,7 +36,7 @@
       "name": "Portable collapsible water bowl",
       "price": "~$8–15",
       "note": "Walks and road trips.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61Ehh-eP+ZL._AC_SL1000_.jpg",
       "imageAlt": "Portable collapsible water bowl",
       "url": "https://www.amazon.com/s?k=collapsible+dog+water+bowl",
       "retailer": "Amazon / Target"
@@ -54,7 +54,7 @@
       "name": "Grooming brush / deshedding tool",
       "price": "~$10–25",
       "note": "Less fur on the couch = happier humans.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61qRKPSGZKL._AC_SL1000_.jpg",
       "imageAlt": "Grooming brush / deshedding tool",
       "url": "https://www.amazon.com/s?k=deshedding+dog+brush",
       "retailer": "Amazon / Target"
@@ -63,7 +63,7 @@
       "name": "Soft pet blanket / throw",
       "price": "~$15–30",
       "note": "Machine-washable nest upgrade.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/810Q0KHc0EL._AC_SL1000_.jpg",
       "imageAlt": "Soft pet blanket / throw",
       "url": "https://www.amazon.com/s?k=soft+pet+blanket",
       "retailer": "Amazon / Target"
@@ -72,7 +72,7 @@
       "name": "Cat tunnel / interactive wand toy",
       "price": "~$10–20",
       "note": "Indoor enrichment without a huge cat tree.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61PegWwFglL._AC_SL1000_.jpg",
       "imageAlt": "Cat tunnel / interactive wand toy",
       "url": "https://www.amazon.com/s?k=cat+wand+toy",
       "retailer": "Amazon / Target"
@@ -81,7 +81,7 @@
       "name": "Treat pouch / training bag",
       "price": "~$10–20",
       "note": "For the owner who trains on walks.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71zdbpVvUEL._AC_SL1000_.jpg",
       "imageAlt": "Treat pouch / training bag",
       "url": "https://www.amazon.com/s?k=dog+treat+pouch",
       "retailer": "Amazon"
@@ -90,13 +90,13 @@
       "name": "Hydro Flask 32 oz (owner hydration)",
       "price": "~$38.49",
       "note": "Long walk hydration for the human half of the duo.",
-      "image": null,
+      "image": "https://target.scene7.com/is/image/Target/GUEST_dbf7e3c0-1196-4486-9a88-06330e7199c2",
       "imageAlt": "Hydro Flask 32 oz (owner hydration)",
       "url": "https://www.target.com/p/hydro-flask-32fl-oz-wide-mouth-flex-straw-bottle-surf/-/A-94943200",
       "retailer": "Target (on Linktree Shop)"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://m.media-amazon.com/images/I/610m3wlIBiL._AC_SL1000_.jpg",
   "source": "10-gifts-for-pet-owners-2026.md",
   "kind": "gift-list"
 }

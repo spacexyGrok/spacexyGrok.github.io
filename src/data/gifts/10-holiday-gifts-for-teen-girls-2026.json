@@ -9,7 +9,7 @@
       "name": "LANEIGE Lip Sleeping Mask",
       "price": "~$25",
       "note": "The viral lip mask that still earns its hype.",
-      "image": null,
+      "image": "https://www.sephora.com/productimages/sku/s3000890-main-zoom-1.jpg",
       "imageAlt": "LANEIGE Lip Sleeping Mask",
       "url": "https://www.sephora.com/product/lip-sleeping-mask-P420652",
       "retailer": "Sephora"
@@ -18,7 +18,7 @@
       "name": "Rare Beauty Soft Pinch Liquid Blush Mini",
       "price": "~$16",
       "note": "One-dot flush; mini is gift-bag perfect.",
-      "image": null,
+      "image": "https://www.sephora.com/productimages/sku/s3000171-main-zoom-us.jpg",
       "imageAlt": "Rare Beauty Soft Pinch Liquid Blush Mini",
       "url": "https://www.sephora.com/product/mini-soft-pinch-liquid-blush-P508264",
       "retailer": "Sephora"
@@ -27,7 +27,7 @@
       "name": "Sol de Janeiro Brazilian Bum Bum Cream Mini",
       "price": "~$24",
       "note": "Cult scent/texture gift without the full-jar price.",
-      "image": null,
+      "image": "https://www.sephora.com/productimages/sku/s1802420-main-zoom.jpg",
       "imageAlt": "Sol de Janeiro Brazilian Bum Bum Cream Mini",
       "url": "https://www.sephora.com/product/brazilian-bum-bum-cream-mini-P425318",
       "retailer": "Sephora"
@@ -36,7 +36,7 @@
       "name": "Hydro Flask 32 oz Wide Mouth",
       "price": "~$38.49",
       "note": "Color she picks herself = higher keep rate.",
-      "image": null,
+      "image": "https://target.scene7.com/is/image/Target/GUEST_dbf7e3c0-1196-4486-9a88-06330e7199c2",
       "imageAlt": "Hydro Flask 32 oz Wide Mouth",
       "url": "https://www.target.com/p/hydro-flask-32fl-oz-wide-mouth-flex-straw-bottle-surf/-/A-94943200",
       "retailer": "Target (on Linktree Shop)"
@@ -72,7 +72,7 @@
       "name": "NEST Madagascar Vanilla Travel Spray 8 mL",
       "price": "~$32",
       "note": "Warm vanilla-orchid without full EDP spend.",
-      "image": null,
+      "image": "https://www.sephora.com/productimages/sku/s2894814-main-zoom.jpg",
       "imageAlt": "NEST Madagascar Vanilla Travel Spray 8 mL",
       "url": "https://www.sephora.com/product/madagascar-vanilla-eau-de-parfum-travel-spray-P517231",
       "retailer": "Sephora (Linktree earn wrapper)"
@@ -92,11 +92,11 @@
       "note": "Dorm / bedroom movie-night blanket — live Linktree item.",
       "image": null,
       "imageAlt": "Juicy Couture Plush Reversible Sherpa Throw",
-      "url": "https://www.juicycouture.com/products/juicy-couture-plush-reversible-sherpa-throw-blanket-white-snowflake-script",
+      "url": "https://juicycouture.com/products/juicy-couture-plush-reversible-sherpa-throw-blanket-black-diagonal",
       "retailer": "Juicy Couture (Rakuten via Linktree)"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://www.sephora.com/productimages/sku/s3000890-main-zoom-1.jpg",
   "source": "10-holiday-gifts-for-teen-girls-2026.md",
   "kind": "gift-list"
 }

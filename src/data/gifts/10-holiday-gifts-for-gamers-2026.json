@@ -9,7 +9,7 @@
       "name": "PowerA Twin Charging Station for DualSense (PS5)",
       "price": "~$20–21",
       "note": "Two controllers charged without cable spaghetti.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61E4bTm1QZL._AC_SL1000_.jpg",
       "imageAlt": "PowerA Twin Charging Station for DualSense (PS5)",
       "url": "https://www.amazon.com/dp/B09B1XX1PN",
       "retailer": "Amazon / Target / Best Buy"
@@ -18,7 +18,7 @@
       "name": "Xbox / PlayStation wireless headset (budget tier)",
       "price": "~$40–80",
       "note": "Clear party chat without waking the house — pick current sale model.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61omPEO78fL._AC_SL1000_.jpg",
       "imageAlt": "Xbox / PlayStation wireless headset (budget tier)",
       "url": "https://www.amazon.com/s?k=ps5+wireless+headset+under+60",
       "retailer": "Amazon / Best Buy"
@@ -27,7 +27,7 @@
       "name": "Large extended gaming mouse pad",
       "price": "~$15–25",
       "note": "Desk transform under $25; pick a non-tacky print.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/81HFOYwHXFL._AC_SL1000_.jpg",
       "imageAlt": "Large extended gaming mouse pad",
       "url": "https://www.amazon.com/s?k=extended+gaming+mouse+pad",
       "retailer": "Amazon"
@@ -36,7 +36,7 @@
       "name": "Logitech G203 / Lightsync gaming mouse",
       "price": "~$25–40",
       "note": "Reliable clicker upgrade without flagship pricing.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/514Ba-DbYNL._AC_SL1000_.jpg",
       "imageAlt": "Logitech G203 / Lightsync gaming mouse",
       "url": "https://www.amazon.com/s?k=Logitech+G203",
       "retailer": "Amazon / Best Buy"
@@ -45,7 +45,7 @@
       "name": "Cable management kit / sleeve set",
       "price": "~$10–20",
       "note": "Clean setup gift for streamers and dual-monitor desks.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71ujmpvYlkL._AC_SL1000_.jpg",
       "imageAlt": "Cable management kit / sleeve set",
       "url": "https://www.amazon.com/s?k=desk+cable+management+kit",
       "retailer": "Amazon"
@@ -54,7 +54,7 @@
       "name": "RGB LED strip for monitor/desk",
       "price": "~$15–30",
       "note": "Ambience without a full PC rebuild.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61vfk5c-EpL._AC_SL1000_.jpg",
       "imageAlt": "RGB LED strip for monitor/desk",
       "url": "https://www.amazon.com/s?k=rgb+led+strip+desk",
       "retailer": "Amazon"
@@ -63,7 +63,7 @@
       "name": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "price": "~$24",
       "note": "Soft sock for long sessions without leaving the chair — live Linktree SKU.",
-      "image": null,
+      "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d8b9a240b8845ce8106e85f07dbcfd5_9366/Unisex_Originals_Comfort_2.0_3-Pack_Crew_Grey_KL3579_01_standard.jpg",
       "imageAlt": "adidas Originals Comfort 2.0 3-Pack Crew (KL3579)",
       "url": "https://www.adidas.com/us/unisex-originals-comfort-2.0-3-pack-crew/KL3579.html",
       "retailer": "adidas (Impact via Linktree)"
@@ -72,7 +72,7 @@
       "name": "Controllers thumb-grip / skin pack",
       "price": "~$10–15",
       "note": "Stocking-size upgrade for sweaty ranked nights.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/51BZSQbDGIL._AC_SL1000_.jpg",
       "imageAlt": "Controllers thumb-grip / skin pack",
       "url": "https://www.amazon.com/s?k=ps5+controller+thumb+grips",
       "retailer": "Amazon"
@@ -81,7 +81,7 @@
       "name": "Anker Zolo 20000mAh 30W Power Bank",
       "price": "~$35.99",
       "note": "Marathon session / LAN-party battery — live Linktree ASIN B0CZ9JLRC6.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1000_.jpg",
       "imageAlt": "Anker Zolo 20000mAh 30W Power Bank",
       "url": "https://www.amazon.com/dp/B0CZ9JLRC6",
       "retailer": "Amazon (Linktree earn wrapper)"
@@ -96,7 +96,7 @@
       "retailer": "Urban Outfitters"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://m.media-amazon.com/images/I/61E4bTm1QZL._AC_SL1000_.jpg",
   "source": "10-holiday-gifts-for-gamers-2026.md",
   "kind": "gift-list"
 }

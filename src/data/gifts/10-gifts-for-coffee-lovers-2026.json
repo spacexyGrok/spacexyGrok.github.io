@@ -9,7 +9,7 @@
       "name": "AeroPress Original Coffee Maker",
       "price": "~$38–40",
       "note": "Smooth cup in ~2 minutes; camping + apartment hero.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61u3sW4Vx4L._AC_SL1000_.jpg",
       "imageAlt": "AeroPress Original Coffee Maker",
       "url": "https://www.amazon.com/dp/B0047BIWSK",
       "retailer": "Amazon / AeroPress"
@@ -18,7 +18,7 @@
       "name": "AeroPress paper filters (350-pack)",
       "price": "~$8–12",
       "note": "Stocking stuffer that pairs with #1.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71VBaKA5FDL._AC_SL1000_.jpg",
       "imageAlt": "AeroPress paper filters (350-pack)",
       "url": "https://www.amazon.com/s?k=AeroPress+paper+filters+350",
       "retailer": "Amazon"
@@ -27,7 +27,7 @@
       "name": "Electric milk frother wand",
       "price": "~$10–20",
       "note": "Café foam without a $300 machine.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61MGX1C7DkL._AC_SL1000_.jpg",
       "imageAlt": "Electric milk frother wand",
       "url": "https://www.amazon.com/s?k=electric+milk+frother",
       "retailer": "Amazon / Target"
@@ -36,7 +36,7 @@
       "name": "Double-wall glass coffee mug set",
       "price": "~$15–25",
       "note": "Looks premium; keeps heat without a burnt hand.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61DkCfDqX5L._AC_SL1000_.jpg",
       "imageAlt": "Double-wall glass coffee mug set",
       "url": "https://www.amazon.com/s?k=double+wall+glass+coffee+mug",
       "retailer": "Amazon / Target"
@@ -45,7 +45,7 @@
       "name": "Bag of specialty whole-bean coffee (12 oz)",
       "price": "~$15–22",
       "note": "Consumable gift they’ll finish happily — pick roast notes they like.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61jZMAeUMtL._AC_SL1000_.jpg",
       "imageAlt": "Bag of specialty whole-bean coffee (12 oz)",
       "url": "https://www.target.com/c/coffee-tea-beverage-grocery/-/N-5xt13",
       "retailer": "Amazon / Target"
@@ -54,7 +54,7 @@
       "name": "Digital coffee scale (0.1g)",
       "price": "~$15–30",
       "note": "Pour-over consistency upgrade.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/61LTwa0NvPL._AC_SL1000_.jpg",
       "imageAlt": "Digital coffee scale (0.1g)",
       "url": "https://www.amazon.com/s?k=coffee+scale+0.1g",
       "retailer": "Amazon"
@@ -72,7 +72,7 @@
       "name": "Coffee syrup sampler set",
       "price": "~$12–20",
       "note": "Flavor variety without a second espresso machine.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/71TSjxaHk0L._AC_SL1000_.jpg",
       "imageAlt": "Coffee syrup sampler set",
       "url": "https://www.amazon.com/s?k=coffee+syrup+sampler+set",
       "retailer": "Amazon / Target"
@@ -81,7 +81,7 @@
       "name": "Hario / budget burr grinder (entry)",
       "price": "~$30–60",
       "note": "Fresh grind > fancy beans on a blade grinder. Confirm live model/price.",
-      "image": null,
+      "image": "https://m.media-amazon.com/images/I/81ACQAtYY+L._AC_SL1000_.jpg",
       "imageAlt": "Hario / budget burr grinder (entry)",
       "url": "https://www.amazon.com/s?k=Hario+Skerton+coffee+grinder",
       "retailer": "Amazon"
@@ -90,13 +90,13 @@
       "name": "Hydro Flask 32 oz Wide Mouth",
       "price": "~$38.49",
       "note": "Cold brew + water bottle dual use.",
-      "image": null,
+      "image": "https://target.scene7.com/is/image/Target/GUEST_dbf7e3c0-1196-4486-9a88-06330e7199c2",
       "imageAlt": "Hydro Flask 32 oz Wide Mouth",
       "url": "https://www.target.com/p/hydro-flask-32fl-oz-wide-mouth-flex-straw-bottle-surf/-/A-94943200",
       "retailer": "Target (on Linktree Shop)"
     }
   ],
-  "ogImage": null,
+  "ogImage": "https://m.media-amazon.com/images/I/61u3sW4Vx4L._AC_SL1000_.jpg",
   "source": "10-gifts-for-coffee-lovers-2026.md",
   "kind": "gift-list"
 }
