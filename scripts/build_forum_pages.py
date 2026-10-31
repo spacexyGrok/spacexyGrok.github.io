@@ -344,6 +344,14 @@ def infer_category(slug: str, title: str) -> str:
         return "Computer Hardware"
     if "video" in s or "game" in s:
         return "Video Games"
+    if "tech-tools" in s or "tech tools" in s:
+        return "Tech Tools"
+    if "auto-tools" in s or "auto tools" in s:
+        return "Auto Tools"
+    if "kitchen" in s:
+        return "Kitchen Accessories"
+    if "black-friday" in s or "black friday" in s:
+        return "Early Black Friday"
     return title.split("(")[0].strip() or "Deals"
 
 
@@ -443,6 +451,10 @@ def forum_path_for(slug: str) -> str:
     mapping = {
         "top-5-computer-hardware-picks-november-2026": "/h2-computer-hardware",
         "top-10-video-game-deals-november-2026": "/h3-video-game-deals",
+        "top-7-tech-tools-november-2026": "/h5-tech-tools",
+        "top-7-auto-tools-november-2026": "/h6-auto-tools",
+        "top-8-kitchen-accessories-2026": "/h7-kitchen-accessories",
+        "early-black-friday-deals-november-2026": "/h8-early-black-friday",
     }
     return mapping.get(slug, f"/h-{slug}")
 
@@ -1134,6 +1146,10 @@ def nav_html(active: str = "home") -> str:
         ("home", "/", "Home"),
         ("hardware", "/h2-computer-hardware", "Computer Hardware"),
         ("games", "/h3-video-game-deals", "Video Game Deals"),
+        ("tech-tools", "/h5-tech-tools", "Tech Tools"),
+        ("auto-tools", "/h6-auto-tools", "Auto Tools"),
+        ("kitchen", "/h7-kitchen-accessories", "Kitchen"),
+        ("early-bf", "/h8-early-black-friday", "Early Black Friday"),
         ("forum", "/forum", "Forum boards"),
         ("search", "/h1-deals-and-finds#search", "Search"),
     ]
@@ -1533,6 +1549,10 @@ ACP HTML pages: Admin panel → Modules → HTML
 | Hardware | computer-hardware → `/h2-computer-hardware` | No (or Yes if you want FM chrome) | No | `02-computer-hardware.html` |
 | Video games | video-game-deals → `/h3-video-game-deals` | No | No | `03-video-game-deals.html` |
 | Asset test | asset-test → `/h4-asset-test` | No | No | `04-asset-test.html` |
+| Tech tools | tech-tools → `/h5-tech-tools` | No | No | `05-tech-tools.html` |
+| Auto tools | auto-tools → `/h6-auto-tools` | No | No | `06-auto-tools.html` |
+| Kitchen | kitchen-accessories → `/h7-kitchen-accessories` | No | No | `07-kitchen-accessories.html` |
+| Early Black Friday | early-black-friday → `/h8-early-black-friday` | No | No | `08-early-black-friday.html` |
 
 Notes:
 - Exact `/hN-slug` numbers depend on creation order. First page is often `/h1-…`, second `/h2-…`. If your numbers differ, edit the nav links inside each HTML file (or re-run the builder after updating `forum_path_for` in the script).
@@ -1716,6 +1736,10 @@ def main() -> int:
     slug_to_file = {
         "top-5-computer-hardware-picks-november-2026": "02-computer-hardware.html",
         "top-10-video-game-deals-november-2026": "03-video-game-deals.html",
+        "top-7-tech-tools-november-2026": "05-tech-tools.html",
+        "top-7-auto-tools-november-2026": "06-auto-tools.html",
+        "top-8-kitchen-accessories-2026": "07-kitchen-accessories.html",
+        "early-black-friday-deals-november-2026": "08-early-black-friday.html",
     }
     for page in catalog["pages"]:
         fname = slug_to_file.get(page["slug"])

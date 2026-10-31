@@ -1,0 +1,9 @@
+
+# Added 2026-10-31 (soda store + brand logos)
+# Store PNGs from seeklogo (owner-provided URLs):
+#   target.png, walmart.png, kroger.png, meijer.png, dollar-general.png, amazon.png
+# Brand: pepsi.png, coca-cola.png from seeklogo
+# pepsi-2-liter-bing.jpg from Bing thumbnail URL in owner notes (converted to JPEG)
+# SKIPPED (watermarked shutterstock image-260nw previews, need license):
+#   coke cans, coke 2 liter, pepsi can, pepsi and coke shutterstock URLs
+# Product thumb: img/hakko-599b.jpg from telegraph-pages/owner-images/hakko-599b.jpg
