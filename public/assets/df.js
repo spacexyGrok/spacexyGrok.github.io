@@ -57,9 +57,9 @@
           "</h3>" +
           '<div class="df-meta">' +
           escapeHtml(p.category || "") +
-          " · " +
+          " \u00b7 " +
           (p.item_count || 0) +
-          " items · Updated " +
+          " items \u00b7 Updated " +
           escapeHtml(p.date || "") +
           "</div>" +
           '<div class="df-summary">' +

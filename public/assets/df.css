@@ -230,3 +230,7 @@ body.df-body {
   .df-wrap { padding: 1rem 0.75rem 2rem; }
   .df-now { font-size: 1.2rem; }
 }
+
+/* Forumotion link colours override page styles, so force ours. */
+.df-wrap a, .df-wrap a:visited { color: var(--df-link) !important; }
+.df-wrap .df-fm-credit a { color: var(--df-muted) !important; }

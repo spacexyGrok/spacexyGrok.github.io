@@ -46,6 +46,28 @@ DISCLOSURE = (
 SLOGAN_FALLBACK = "Price drops · gift deals · tool discounts"
 
 
+
+# Forumotion serves HTML pages with a non UTF-8 charset, so emit pure ASCII.
+def _ascii_js(t):
+    return "".join(c if ord(c) < 128 else "\\u%04x" % ord(c) for c in t)
+
+def _ascii_html(t):
+    import re as _re
+    parts = _re.split(r"(<script\b[^>]*>.*?</script>)", t, flags=_re.S | _re.I)
+    out = []
+    for i, part in enumerate(parts):
+        if i % 2:
+            out.append(_ascii_js(part))
+        else:
+            out.append("".join(c if ord(c) < 128 else "&#%d;" % ord(c) for c in part))
+    return "".join(out)
+
+FM_LINK_FIX = """
+/* Forumotion link colours override page styles, so force ours. */
+.df-wrap a, .df-wrap a:visited { color: var(--df-link) !important; }
+.df-wrap .df-fm-credit a { color: var(--df-muted) !important; }
+"""
+
 def load_slogan() -> str:
     if not BRAND_MD.is_file():
         return SLOGAN_FALLBACK
@@ -1375,11 +1397,13 @@ def main() -> int:
         json.dumps(public_catalog, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+    css = css + FM_LINK_FIX
     (assets_dir / "df.css").write_text(css, encoding="utf-8")
+    js = _ascii_js(js)
     (assets_dir / "df.js").write_text(js, encoding="utf-8")
 
     home = build_homepage(catalog, css, js)
-    (out_dir / "01-homepage.html").write_text(home, encoding="utf-8")
+    (out_dir / "01-homepage.html").write_text(_ascii_html(home), encoding="utf-8")
 
     slug_to_file = {
         "top-5-computer-hardware-picks-november-2026": "02-computer-hardware.html",
@@ -1389,9 +1413,9 @@ def main() -> int:
         fname = slug_to_file.get(page["slug"])
         if not fname:
             fname = f"list-{page['slug']}.html"
-        (out_dir / fname).write_text(build_list_page(page, css, js), encoding="utf-8")
+        (out_dir / fname).write_text(_ascii_html(build_list_page(page, css, js)), encoding="utf-8")
 
-    (out_dir / "04-asset-test.html").write_text(build_test_page(css, js), encoding="utf-8")
+    (out_dir / "04-asset-test.html").write_text(_ascii_html(build_test_page(css, js)), encoding="utf-8")
     write_admin_notes(out_dir, catalog)
     write_research(out_dir)
 
