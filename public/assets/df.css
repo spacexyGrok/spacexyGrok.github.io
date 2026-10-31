@@ -1,5 +1,5 @@
 /* Deals and Finds: shared Forumotion / GitHub card styles */
-:root {
+:root, html[data-theme="dark"], .df-body[data-theme="dark"] {
   --df-bg: #0f1419;
   --df-surface: #1a222c;
   --df-surface-2: #232d3a;
@@ -9,9 +9,26 @@
   --df-accent: #2bb5a0;
   --df-accent-2: #e86b5a;
   --df-link: #6ec9ff;
+  --df-img-bg: #0a0e12;
+  --df-hover-border: #5a6a7e;
+  --df-shadow: rgba(0,0,0,0.25);
   --df-radius: 12px;
   --df-gap: 1rem;
   --df-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+html[data-theme="light"], .df-body[data-theme="light"] {
+  --df-bg: #f4f6f9;
+  --df-surface: #ffffff;
+  --df-surface-2: #eef2f7;
+  --df-border: #c9d3e0;
+  --df-text: #1a2330;
+  --df-muted: #5a6a7c;
+  --df-accent: #0d8f7c;
+  --df-accent-2: #c44a3a;
+  --df-link: #0b6bcb;
+  --df-img-bg: #eef2f7;
+  --df-hover-border: #8fa0b4;
+  --df-shadow: rgba(20,30,45,0.08);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 16px; }
@@ -41,24 +58,43 @@ body.df-body {
   text-decoration: none;
 }
 .df-nav a:hover { text-decoration: underline; }
+.df-theme-toggle {
+  margin-left: auto;
+  padding: 0.3rem 0.65rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--df-text);
+  background: var(--df-surface);
+  border: 1px solid var(--df-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.df-theme-toggle:hover {
+  border-color: var(--df-hover-border);
+}
 .df-title {
   font-size: clamp(1.85rem, 4vw, 2.5rem);
   font-weight: 750;
   letter-spacing: -0.02em;
   margin: 0 0 0.35rem;
   line-height: 1.15;
+  text-align: center;
 }
 .df-slogan {
   font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   color: var(--df-muted);
-  margin: 0 0 0.65rem;
+  margin: 0 auto 0.65rem;
   font-weight: 500;
+  text-align: center;
+  max-width: 48ch;
 }
 .df-disclosure {
   font-size: 0.8rem;
   color: var(--df-muted);
-  margin: 0 0 1.25rem;
+  margin: 0 auto 1.25rem;
   max-width: 62ch;
+  text-align: center;
 }
 .df-grid {
   display: grid;
@@ -76,15 +112,18 @@ body.df-body {
   gap: 0.55rem;
   min-height: 100%;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  color: inherit;
+  text-decoration: none;
 }
 .df-card:hover {
-  border-color: #5a6a7e;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  border-color: var(--df-hover-border);
+  box-shadow: 0 4px 18px var(--df-shadow);
 }
 .df-card h2, .df-card h3 {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 650;
+  color: var(--df-text);
 }
 .df-card .df-meta {
   font-size: 0.8rem;
@@ -95,15 +134,42 @@ body.df-body {
   color: var(--df-text);
   flex: 1;
 }
-.df-card a.df-cta {
+.df-card a.df-cta, .df-card .df-cta {
   display: inline-block;
   margin-top: 0.25rem;
-  color: var(--df-link);
+  color: var(--df-link) !important;
   font-weight: 600;
   text-decoration: none;
   font-size: 0.92rem;
 }
-.df-card a.df-cta:hover { text-decoration: underline; }
+.df-card a.df-cta:hover, .df-card .df-cta:hover { text-decoration: underline; }
+.df-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  align-items: center;
+}
+.df-logos img {
+  height: 28px;
+  width: auto;
+  max-width: 78px;
+  object-fit: contain;
+  display: block;
+}
+.df-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.df-thumbs img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--df-border);
+  background: var(--df-img-bg);
+  display: block;
+}
 .df-badge {
   display: inline-block;
   font-size: 0.72rem;
@@ -173,7 +239,7 @@ body.df-body {
   width: 100%;
   max-height: 180px;
   object-fit: contain;
-  background: #0a0e12;
+  background: var(--df-img-bg);
   border-radius: 8px;
   border: 1px solid var(--df-border);
 }
@@ -229,8 +295,14 @@ body.df-body {
 @media (max-width: 560px) {
   .df-wrap { padding: 1rem 0.75rem 2rem; }
   .df-now { font-size: 1.2rem; }
+  .df-theme-toggle { margin-left: 0; }
 }
 
 /* Forumotion link colours override page styles, so force ours. */
 .df-wrap a, .df-wrap a:visited { color: var(--df-link) !important; }
 .df-wrap .df-fm-credit a { color: var(--df-muted) !important; }
+.df-wrap a.df-cta, .df-wrap .df-cta { color: var(--df-link) !important; }
+.df-body[data-theme="light"] .df-wrap a,
+.df-body[data-theme="light"] .df-wrap a:visited { color: var(--df-link) !important; }
+.df-body[data-theme="dark"] .df-wrap a,
+.df-body[data-theme="dark"] .df-wrap a:visited { color: var(--df-link) !important; }

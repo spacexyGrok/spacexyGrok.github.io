@@ -3,6 +3,7 @@
   "use strict";
 
   var CATALOG_URL = "https://spacexygrok.github.io/data/catalog.json";
+  var THEME_KEY = "df-theme";
 
   function qs(sel, root) {
     return (root || document).querySelector(sel);
@@ -17,11 +18,66 @@
     return "$" + Number(n).toFixed(2);
   }
 
+  function preferredTheme() {
+    try {
+      var stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") return stored;
+    } catch (e) {}
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+    return "dark";
+  }
+
+  function applyTheme(theme) {
+    var t = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", t);
+    if (document.body) document.body.setAttribute("data-theme", t);
+    var btn = qs("[data-df-theme-toggle]");
+    if (btn) {
+      btn.textContent = t === "light" ? "Dark" : "Light";
+      btn.setAttribute("aria-label", t === "light" ? "Switch to dark theme" : "Switch to light theme");
+    }
+  }
+
+  function initTheme() {
+    applyTheme(preferredTheme());
+    var btn = qs("[data-df-theme-toggle]");
+    if (!btn || btn.getAttribute("data-df-bound") === "1") return;
+    btn.setAttribute("data-df-bound", "1");
+    btn.addEventListener("click", function () {
+      var cur = document.body.getAttribute("data-theme") || preferredTheme();
+      var next = cur === "light" ? "dark" : "light";
+      applyTheme(next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch (e) {}
+    });
+  }
+
   function fetchCatalog() {
     return fetch(CATALOG_URL, { credentials: "omit", mode: "cors" }).then(function (r) {
       if (!r.ok) throw new Error("catalog " + r.status);
       return r.json();
     });
+  }
+
+  function thumbsHtml(thumbs) {
+    var list = (thumbs || []).filter(Boolean).slice(0, 3);
+    if (!list.length) return "";
+    return (
+      '<div class="df-thumbs">' +
+      list
+        .map(function (src) {
+          return (
+            '<img src="' +
+            escapeAttr(src) +
+            '" alt="" loading="lazy" />'
+          );
+        })
+        .join("") +
+      "</div>"
+    );
   }
 
   function initHome(catalog) {
@@ -52,6 +108,7 @@
             ? "Biggest listed saving: " + money(p.biggest_saving_dollars)
             : "Savings vary by item";
         a.innerHTML =
+          thumbsHtml(p.thumbnails) +
           "<h3>" +
           escapeHtml(p.title) +
           "</h3>" +
@@ -68,7 +125,7 @@
           '<div class="df-meta">' +
           escapeHtml(saveLine) +
           "</div>" +
-          '<span class="df-cta">Open list</span>';
+          '<span class="df-cta">Explore deals</span>';
         listEl.appendChild(a);
       });
     }
@@ -252,6 +309,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    initTheme();
     initListSort();
     if (!qs("[data-df-topics]")) return;
     fetchCatalog()
@@ -266,5 +324,16 @@
       });
   });
 
-  window.DF = { fetchCatalog: fetchCatalog, formatPrice: formatPrice };
+  // Apply theme ASAP if body already exists (inline fallback after DOM).
+  if (document.body) initTheme();
+  else {
+    applyTheme(preferredTheme());
+  }
+
+  window.DF = {
+    fetchCatalog: fetchCatalog,
+    formatPrice: formatPrice,
+    applyTheme: applyTheme,
+    initTheme: initTheme,
+  };
 })();

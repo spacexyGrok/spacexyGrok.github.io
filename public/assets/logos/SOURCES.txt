@@ -1,0 +1,19 @@
+Logo sources (self-hosted copies for Forumotion reliability)
+
+target.svg
+  Wikimedia Commons: Target Corporation logo (vector).svg
+  https://commons.wikimedia.org/wiki/File:Target_Corporation_logo_(vector).svg
+  https://upload.wikimedia.org/wikipedia/commons/c/c5/Target_Corporation_logo_%28vector%29.svg
+  License note: PD-textlogo (simple geometric shapes); trademarked by Target Corporation.
+
+pepsi.svg
+  Wikimedia Commons: Pepsi 2023.svg
+  https://commons.wikimedia.org/wiki/File:Pepsi_2023.svg
+  https://upload.wikimedia.org/wikipedia/commons/6/68/Pepsi_2023.svg
+  License note: PD-textlogo; trademarked by PepsiCo.
+
+coca-cola.svg
+  Wikimedia Commons: Coca-Cola logo.svg
+  https://commons.wikimedia.org/wiki/File:Coca-Cola_logo.svg
+  https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg
+  License note: PD-textlogo / pre-1929 publication; trademarked by The Coca-Cola Company.

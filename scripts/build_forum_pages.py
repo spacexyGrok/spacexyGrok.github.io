@@ -37,6 +37,18 @@ SODA_PREVIEW = (
     / "rev2"
     / "pepsi-coke-deals-by-store-week-of-2026-10-29.md"
 )
+# No Forumotion soda HTML page yet; homepage card links to the Telegraph preview.
+SODA_PAGE_LINK = (
+    "https://telegra.ph/"
+    "Preview-This-Weeks-Pepsi-and-Coke-Deals-by-Store-week-of-2026-10-29-10-30"
+)
+STOREWIDE_PATH = ROOT / "src" / "data" / "storewide.json"
+LOGO_BASE = f"{SITE_URL}/assets/logos"
+SODA_LOGOS = [
+    {"src": f"{LOGO_BASE}/target.svg", "alt": "Target"},
+    {"src": f"{LOGO_BASE}/pepsi.svg", "alt": "Pepsi"},
+    {"src": f"{LOGO_BASE}/coca-cola.svg", "alt": "Coca-Cola"},
+]
 
 DISCLOSURE = (
     "This site uses ads and affiliate links and may earn a commission. "
@@ -66,6 +78,11 @@ FM_LINK_FIX = """
 /* Forumotion link colours override page styles, so force ours. */
 .df-wrap a, .df-wrap a:visited { color: var(--df-link) !important; }
 .df-wrap .df-fm-credit a { color: var(--df-muted) !important; }
+.df-wrap a.df-cta, .df-wrap .df-cta { color: var(--df-link) !important; }
+.df-body[data-theme="light"] .df-wrap a,
+.df-body[data-theme="light"] .df-wrap a:visited { color: var(--df-link) !important; }
+.df-body[data-theme="dark"] .df-wrap a,
+.df-body[data-theme="dark"] .df-wrap a:visited { color: var(--df-link) !important; }
 """
 
 def load_slogan() -> str:
@@ -157,37 +174,40 @@ def load_soda_card() -> dict:
         "summary": "Coming soon",
         "store": None,
         "link": None,
+        "page_link": SODA_PAGE_LINK,
         "image": None,
+        "logos": SODA_LOGOS,
         "now_price": None,
         "old_price": None,
         "savings_dollars": None,
         "savings_percent": None,
         "date": None,
+        "cta_label": "Explore deals",
     }
     if not SODA_PREVIEW.is_file():
         return card
-    text = SODA_PREVIEW.read_text(encoding="utf-8")
+    text_md = SODA_PREVIEW.read_text(encoding="utf-8")
     # Detect Target Circle offer
-    if "Target Circle" not in text and "40% off" not in text:
+    if "Target Circle" not in text_md and "40% off" not in text_md:
         return card
-    end = None
-    m = re.search(r"through\s+(\d{4}-\d{2}-\d{2})", text)
+    end_date = None
+    m = re.search(r"through\s+(\d{4}-\d{2}-\d{2})", text_md)
     if m:
-        end = m.group(1)
+        end_date = m.group(1)
     pepsi = re.search(
         r"Pepsi \(Target Circle.*?Price per can:\*\*\s*about\s*\$([0-9.]+)",
-        text,
+        text_md,
         re.S,
     )
     coke = re.search(
         r"Coca-Cola \(Target Circle.*?Price per can:\*\*\s*about\s*\$([0-9.]+)",
-        text,
+        text_md,
         re.S,
     )
-    link_m = re.search(r"\[Shop target\.com\]\((https://www\.target\.com[^)]+)\)", text)
+    link_m = re.search(r"\[Shop target\.com\]\((https://www\.target\.com[^)]+)\)", text_md)
     parts = ["Target Circle: 40% off when you buy 3 soda 12-packs"]
-    if end:
-        parts.append(f"(through {end})")
+    if end_date:
+        parts.append(f"(through {end_date})")
     detail = []
     if pepsi:
         detail.append(f"Pepsi about ${pepsi.group(1)} per can after the offer")
@@ -202,11 +222,78 @@ def load_soda_card() -> dict:
             "summary": summary,
             "store": "Target",
             "link": link_m.group(1) if link_m else "https://www.target.com/c/soda-grocery/-/N-5xsz1",
-            "date": end,
+            "page_link": SODA_PAGE_LINK,
+            "date": end_date,
             "category": "Soda",
+            "logos": SODA_LOGOS,
+            "cta_label": "Explore deals",
         }
     )
     return card
+
+
+def load_storewide() -> dict:
+    """Configurable Best Store-wide Saving Deal from src/data/storewide.json."""
+    fallback = {
+        "id": "storewide",
+        "kind": "feature",
+        "title": "Best Store-wide Saving Deal",
+        "status": "coming_soon",
+        "summary": "Coming soon",
+        "store": None,
+        "offer": None,
+        "logo": None,
+        "link": None,
+        "page_link": None,
+        "savings_dollars": None,
+        "savings_percent": None,
+        "cta_label": "Explore deals",
+    }
+    if not STOREWIDE_PATH.is_file():
+        return fallback
+    try:
+        data = json.loads(STOREWIDE_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"WARN: storewide.json: {exc}", file=sys.stderr)
+        return fallback
+    out = dict(fallback)
+    for key in (
+        "id",
+        "kind",
+        "title",
+        "status",
+        "summary",
+        "store",
+        "offer",
+        "logo",
+        "link",
+        "page_link",
+        "savings_dollars",
+        "savings_percent",
+        "cta_label",
+    ):
+        if key in data and data[key] is not None:
+            out[key] = data[key]
+    if data.get("offer") and (not data.get("summary") or data.get("summary") == "Coming soon"):
+        store = data.get("store") or ""
+        out["summary"] = (f"{store}. {data['offer']}" if store else data["offer"]).strip()
+    # Homepage static HTML may use a ShrinkEarn wrap of the Rakuten referral.
+    # Never emit a raw rakuten.com / linksynergy URL into any output.
+    for key in ("link", "page_link"):
+        val = (out.get(key) or "").lower()
+        if "rakuten.com" in val or "linksynergy.com" in val:
+            print(
+                "WARN: storewide.json has a raw Rakuten URL in "
+                + key
+                + "; clearing that field (use a ShrinkEarn shortlink).",
+                file=sys.stderr,
+            )
+            out[key] = None
+    # No Rakuten logo on Forumotion (referral terms).
+    out["logo"] = None
+    out["logos"] = []
+    return out
+
 
 
 def product_to_item(prod: dict, page: dict) -> dict:
@@ -301,6 +388,9 @@ def build_catalog() -> dict:
         sav = [i["savings_dollars"] for i in page_items if i.get("savings_dollars") is not None]
         page["biggest_saving_dollars"] = max(sav) if sav else None
         page["items"] = page_items
+        page["thumbnails"] = [
+            it["image"] for it in page_items if it.get("image")
+        ][:3]
         pages.append(page)
 
     soda = load_soda_card()
@@ -313,17 +403,23 @@ def build_catalog() -> dict:
         if top_deal is None or sd > top_deal["savings_dollars"]:
             top_deal = it
 
-    # Store-wide sale: none detected in current gift data
-    storewide = {
-        "id": "storewide",
+    storewide = load_storewide()
+
+    top_feat = {
+        "id": "top-deal",
         "kind": "feature",
-        "title": "Best Store-wide Saving Deal",
-        "status": "coming_soon",
-        "summary": "Coming soon",
-        "store": None,
-        "link": None,
-        "savings_dollars": None,
-        "savings_percent": None,
+        "title": "Top Deal of the Week",
+        "status": "active" if top_deal else "coming_soon",
+        "summary": (
+            f"{top_deal['name']}: save {money_fmt(top_deal['savings_dollars'])}"
+            if top_deal
+            else "Coming soon"
+        ),
+        "item": top_deal,
+        "cta_label": "Explore deals",
+        "page_link": (
+            forum_path_for(top_deal["page_slug"]) if top_deal else None
+        ),
     }
 
     catalog = {
@@ -336,22 +432,7 @@ def build_catalog() -> dict:
         "items": items,
         "features": {
             "weekly_soda": soda,
-            "top_deal_of_week": (
-                {
-                    "id": "top-deal",
-                    "kind": "feature",
-                    "title": "Top Deal of the Week",
-                    "status": "active" if top_deal else "coming_soon",
-                    "summary": (
-                        f"{top_deal['name']}: save {money_fmt(top_deal['savings_dollars'])}"
-                        if top_deal
-                        else "Coming soon"
-                    ),
-                    "item": top_deal,
-                }
-                if True
-                else None
-            ),
+            "top_deal_of_week": top_feat,
             "storewide": storewide,
         },
     }
@@ -368,7 +449,7 @@ def forum_path_for(slug: str) -> str:
 
 def css_text() -> str:
     return """/* Deals and Finds: shared Forumotion / GitHub card styles */
-:root {
+:root, html[data-theme="dark"], .df-body[data-theme="dark"] {
   --df-bg: #0f1419;
   --df-surface: #1a222c;
   --df-surface-2: #232d3a;
@@ -378,9 +459,26 @@ def css_text() -> str:
   --df-accent: #2bb5a0;
   --df-accent-2: #e86b5a;
   --df-link: #6ec9ff;
+  --df-img-bg: #0a0e12;
+  --df-hover-border: #5a6a7e;
+  --df-shadow: rgba(0,0,0,0.25);
   --df-radius: 12px;
   --df-gap: 1rem;
   --df-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+html[data-theme="light"], .df-body[data-theme="light"] {
+  --df-bg: #f4f6f9;
+  --df-surface: #ffffff;
+  --df-surface-2: #eef2f7;
+  --df-border: #c9d3e0;
+  --df-text: #1a2330;
+  --df-muted: #5a6a7c;
+  --df-accent: #0d8f7c;
+  --df-accent-2: #c44a3a;
+  --df-link: #0b6bcb;
+  --df-img-bg: #eef2f7;
+  --df-hover-border: #8fa0b4;
+  --df-shadow: rgba(20,30,45,0.08);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 16px; }
@@ -410,24 +508,43 @@ body.df-body {
   text-decoration: none;
 }
 .df-nav a:hover { text-decoration: underline; }
+.df-theme-toggle {
+  margin-left: auto;
+  padding: 0.3rem 0.65rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--df-text);
+  background: var(--df-surface);
+  border: 1px solid var(--df-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.df-theme-toggle:hover {
+  border-color: var(--df-hover-border);
+}
 .df-title {
   font-size: clamp(1.85rem, 4vw, 2.5rem);
   font-weight: 750;
   letter-spacing: -0.02em;
   margin: 0 0 0.35rem;
   line-height: 1.15;
+  text-align: center;
 }
 .df-slogan {
   font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   color: var(--df-muted);
-  margin: 0 0 0.65rem;
+  margin: 0 auto 0.65rem;
   font-weight: 500;
+  text-align: center;
+  max-width: 48ch;
 }
 .df-disclosure {
   font-size: 0.8rem;
   color: var(--df-muted);
-  margin: 0 0 1.25rem;
+  margin: 0 auto 1.25rem;
   max-width: 62ch;
+  text-align: center;
 }
 .df-grid {
   display: grid;
@@ -445,15 +562,18 @@ body.df-body {
   gap: 0.55rem;
   min-height: 100%;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  color: inherit;
+  text-decoration: none;
 }
 .df-card:hover {
-  border-color: #5a6a7e;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  border-color: var(--df-hover-border);
+  box-shadow: 0 4px 18px var(--df-shadow);
 }
 .df-card h2, .df-card h3 {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 650;
+  color: var(--df-text);
 }
 .df-card .df-meta {
   font-size: 0.8rem;
@@ -464,15 +584,42 @@ body.df-body {
   color: var(--df-text);
   flex: 1;
 }
-.df-card a.df-cta {
+.df-card a.df-cta, .df-card .df-cta {
   display: inline-block;
   margin-top: 0.25rem;
-  color: var(--df-link);
+  color: var(--df-link) !important;
   font-weight: 600;
   text-decoration: none;
   font-size: 0.92rem;
 }
-.df-card a.df-cta:hover { text-decoration: underline; }
+.df-card a.df-cta:hover, .df-card .df-cta:hover { text-decoration: underline; }
+.df-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  align-items: center;
+}
+.df-logos img {
+  height: 28px;
+  width: auto;
+  max-width: 78px;
+  object-fit: contain;
+  display: block;
+}
+.df-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.df-thumbs img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--df-border);
+  background: var(--df-img-bg);
+  display: block;
+}
 .df-badge {
   display: inline-block;
   font-size: 0.72rem;
@@ -542,7 +689,7 @@ body.df-body {
   width: 100%;
   max-height: 180px;
   object-fit: contain;
-  background: #0a0e12;
+  background: var(--df-img-bg);
   border-radius: 8px;
   border: 1px solid var(--df-border);
 }
@@ -598,8 +745,10 @@ body.df-body {
 @media (max-width: 560px) {
   .df-wrap { padding: 1rem 0.75rem 2rem; }
   .df-now { font-size: 1.2rem; }
+  .df-theme-toggle { margin-left: 0; }
 }
 """
+
 
 
 def js_text() -> str:
@@ -608,6 +757,7 @@ def js_text() -> str:
   "use strict";
 
   var CATALOG_URL = "https://spacexygrok.github.io/data/catalog.json";
+  var THEME_KEY = "df-theme";
 
   function qs(sel, root) {
     return (root || document).querySelector(sel);
@@ -622,11 +772,66 @@ def js_text() -> str:
     return "$" + Number(n).toFixed(2);
   }
 
+  function preferredTheme() {
+    try {
+      var stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") return stored;
+    } catch (e) {}
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+    return "dark";
+  }
+
+  function applyTheme(theme) {
+    var t = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", t);
+    if (document.body) document.body.setAttribute("data-theme", t);
+    var btn = qs("[data-df-theme-toggle]");
+    if (btn) {
+      btn.textContent = t === "light" ? "Dark" : "Light";
+      btn.setAttribute("aria-label", t === "light" ? "Switch to dark theme" : "Switch to light theme");
+    }
+  }
+
+  function initTheme() {
+    applyTheme(preferredTheme());
+    var btn = qs("[data-df-theme-toggle]");
+    if (!btn || btn.getAttribute("data-df-bound") === "1") return;
+    btn.setAttribute("data-df-bound", "1");
+    btn.addEventListener("click", function () {
+      var cur = document.body.getAttribute("data-theme") || preferredTheme();
+      var next = cur === "light" ? "dark" : "light";
+      applyTheme(next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch (e) {}
+    });
+  }
+
   function fetchCatalog() {
     return fetch(CATALOG_URL, { credentials: "omit", mode: "cors" }).then(function (r) {
       if (!r.ok) throw new Error("catalog " + r.status);
       return r.json();
     });
+  }
+
+  function thumbsHtml(thumbs) {
+    var list = (thumbs || []).filter(Boolean).slice(0, 3);
+    if (!list.length) return "";
+    return (
+      '<div class="df-thumbs">' +
+      list
+        .map(function (src) {
+          return (
+            '<img src="' +
+            escapeAttr(src) +
+            '" alt="" loading="lazy" />'
+          );
+        })
+        .join("") +
+      "</div>"
+    );
   }
 
   function initHome(catalog) {
@@ -657,6 +862,7 @@ def js_text() -> str:
             ? "Biggest listed saving: " + money(p.biggest_saving_dollars)
             : "Savings vary by item";
         a.innerHTML =
+          thumbsHtml(p.thumbnails) +
           "<h3>" +
           escapeHtml(p.title) +
           "</h3>" +
@@ -673,7 +879,7 @@ def js_text() -> str:
           '<div class="df-meta">' +
           escapeHtml(saveLine) +
           "</div>" +
-          '<span class="df-cta">Open list</span>';
+          '<span class="df-cta">Explore deals</span>';
         listEl.appendChild(a);
       });
     }
@@ -857,6 +1063,7 @@ def js_text() -> str:
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    initTheme();
     initListSort();
     if (!qs("[data-df-topics]")) return;
     fetchCatalog()
@@ -871,9 +1078,21 @@ def js_text() -> str:
       });
   });
 
-  window.DF = { fetchCatalog: fetchCatalog, formatPrice: formatPrice };
+  // Apply theme ASAP if body already exists (inline fallback after DOM).
+  if (document.body) initTheme();
+  else {
+    applyTheme(preferredTheme());
+  }
+
+  window.DF = {
+    fetchCatalog: fetchCatalog,
+    formatPrice: formatPrice,
+    applyTheme: applyTheme,
+    initTheme: initTheme,
+  };
 })();
 """
+
 
 
 def price_html(item: dict) -> str:
@@ -920,6 +1139,10 @@ def nav_html(active: str = "home") -> str:
     bits = []
     for key, href, label in links:
         bits.append(f'<a href="{href}">{esc(label)}</a>')
+    bits.append(
+        '<button type="button" class="df-theme-toggle" data-df-theme-toggle '
+        'aria-label="Switch color theme">Light</button>'
+    )
     return '<nav class="df-nav" aria-label="Main">' + "".join(bits) + "</nav>"
 
 
@@ -933,6 +1156,17 @@ def fm_credit() -> str:
 
 def head_block(title: str, inline_css: bool, css_body: str) -> str:
     """External CSS preferred. Inline fallback kept for paste if external is blocked."""
+    theme_boot = (
+        "<script>"
+        "(function(){try{var k='df-theme';var t=localStorage.getItem(k);"
+        "if(t!=='light'&&t!=='dark'){"
+        "t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)"
+        "?'light':'dark';}"
+        "document.documentElement.setAttribute('data-theme',t);"
+        "document.documentElement.style.colorScheme=t;"
+        "}catch(e){}})();"
+        "</script>"
+    )
     parts = [
         "<!DOCTYPE html>",
         '<html lang="en">',
@@ -940,6 +1174,7 @@ def head_block(title: str, inline_css: bool, css_body: str) -> str:
         '<meta charset="utf-8" />',
         '<meta name="viewport" content="width=device-width, initial-scale=1" />',
         f"<title>{esc(title)}</title>",
+        theme_boot,
         f'<link rel="stylesheet" href="{SITE_URL}/assets/df.css" />',
     ]
     if inline_css:
@@ -974,6 +1209,36 @@ def script_block(inline_js: bool, js_body: str) -> str:
     return "\n".join(parts)
 
 
+def logos_html(feat: dict) -> str:
+    logos = feat.get("logos") or []
+    if feat.get("logo") and not logos:
+        logos = [{"src": feat["logo"], "alt": feat.get("store") or "Store"}]
+    if not logos:
+        return ""
+    bits = ['<div class="df-logos">']
+    for logo in logos:
+        src = logo.get("src") if isinstance(logo, dict) else str(logo)
+        alt = (logo.get("alt") if isinstance(logo, dict) else "") or ""
+        if not src:
+            continue
+        bits.append(
+            f'<img src="{esc(src)}" alt="{esc(alt)}" loading="lazy" />'
+        )
+    bits.append("</div>")
+    return "".join(bits) if len(bits) > 2 else ""
+
+
+def thumbs_html(thumbs: list | None) -> str:
+    imgs = [t for t in (thumbs or []) if t][:3]
+    if not imgs:
+        return ""
+    bits = ['<div class="df-thumbs">']
+    for src in imgs:
+        bits.append(f'<img src="{esc(src)}" alt="" loading="lazy" />')
+    bits.append("</div>")
+    return "".join(bits)
+
+
 def feature_card_html(feat: dict, kind: str) -> str:
     title = feat.get("title") or kind
     status = feat.get("status") or "coming_soon"
@@ -985,21 +1250,22 @@ def feature_card_html(feat: dict, kind: str) -> str:
             f'<p class="df-summary">Coming soon</p>'
             f"</article>"
         )
+    cta = feat.get("cta_label") or "Explore deals"
     if kind == "soda":
-        link = feat.get("link") or "#"
+        link = feat.get("page_link") or feat.get("link") or "#"
         return (
             f'<article class="df-card">'
             f'<span class="df-badge">Weekly</span>'
             f"<h2>{esc(title)}</h2>"
+            f"{logos_html(feat)}"
             f'<p class="df-summary">{esc(feat.get("summary") or "")}</p>'
-            f'<a class="df-cta" href="{esc(link)}" rel="sponsored nofollow noopener" target="_blank">'
-            f"Shop target.com</a>"
+            f'<a class="df-cta" href="{esc(link)}" rel="noopener" target="_blank">'
+            f"{esc(cta)}</a>"
             f"</article>"
         )
     if kind == "top":
         item = feat.get("item") or {}
-        link = item.get("link") or "#"
-        label = item.get("shop_label") or "Shop store"
+        link = feat.get("page_link") or "#"
         img = ""
         if item.get("image"):
             img = (
@@ -1016,8 +1282,23 @@ def feature_card_html(feat: dict, kind: str) -> str:
             f"Save {esc(save or '')} "
             f'(Now {esc(money_fmt(item.get("now_price")) or "")}'
             f'{(", was " + esc(money_fmt(item.get("old_price")) or "")) if item.get("old_price") else ""}).</p>'
+            f'<a class="df-cta" href="{esc(link)}">'
+            f"{esc(cta)}</a>"
+            f"</article>"
+        )
+    if kind == "storewide":
+        link = feat.get("page_link") or feat.get("link") or "#"
+        store = feat.get("store") or ""
+        meta = f'<div class="df-meta">{esc(store)}</div>' if store else ""
+        # Text only: no Rakuten (or other) logo on this card.
+        return (
+            f'<article class="df-card">'
+            f'<span class="df-badge">Store-wide</span>'
+            f"<h2>{esc(title)}</h2>"
+            f"{meta}"
+            f'<p class="df-summary">{esc(feat.get("summary") or feat.get("offer") or "")}</p>'
             f'<a class="df-cta" href="{esc(link)}" rel="sponsored nofollow noopener" target="_blank">'
-            f"{esc(label)}</a>"
+            f"{esc(cta)}</a>"
             f"</article>"
         )
     return (
@@ -1045,14 +1326,16 @@ def topic_cards_static(pages: list[dict]) -> str:
             f'data-title="{esc(p.get("title") or "")}" '
             f'data-items="{p.get("item_count") or 0}" '
             f'data-saving="{save or 0}" data-date="{esc(p.get("date") or "")}">'
+            f'{thumbs_html(p.get("thumbnails"))}'
             f'<h3>{esc(p.get("title") or "")}</h3>'
             f'<div class="df-meta">{esc(p.get("category") or "")} · '
             f'{p.get("item_count") or 0} items · Updated {esc(p.get("date") or "")}</div>'
             f'<div class="df-summary">{esc(desc)}</div>'
             f'<div class="df-meta">{esc(save_line)}</div>'
-            f'<span class="df-cta">Open list</span></a>'
+            f'<span class="df-cta">Explore deals</span></a>'
         )
     return "\n".join(cards)
+
 
 
 def product_card_html(item: dict) -> str:
@@ -1089,6 +1372,7 @@ def build_homepage(catalog: dict, css: str, js: str) -> str:
     pages = catalog.get("pages") or []
 
     body = f"""<body class="df-body">
+<script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
 {nav_html("home")}
 <h1 class="df-title">Deals and Finds</h1>
@@ -1146,6 +1430,7 @@ def build_list_page(page: dict, css: str, js: str) -> str:
     items_html = "\n".join(product_card_html(it) for it in page.get("items") or [])
     title = page.get("title") or "Deal list"
     body = f"""<body class="df-body">
+<script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
 {nav_html("list")}
 <h1 class="df-title">{esc(title)}</h1>
@@ -1176,6 +1461,7 @@ def build_list_page(page: dict, css: str, js: str) -> str:
 
 def build_test_page(css: str, js: str) -> str:
     body = f"""<body class="df-body">
+<script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
 {nav_html("test")}
 <h1 class="df-title">Forumotion asset test</h1>
@@ -1271,9 +1557,9 @@ Each HTML file also inlines CSS and JS as a fallback (see HTML comments).
 
 ## Placeholders
 
-- Best Store-wide Saving Deal: Coming soon (no store-wide sale in current gift JSON).
-- Weekly Soda Deal: filled from telegraph Pepsi/Coke preview when present; otherwise Coming soon.
-- Top Deal of the Week: computed as max savings_dollars across catalog items.
+- Best Store-wide Saving Deal: configured in `site/src/data/storewide.json`. Homepage HTML only for the Rakuten shortlink; public catalog.json redacts it. No Rakuten logo.
+- Weekly Soda Deal: filled from telegraph Pepsi/Coke preview when present; otherwise Coming soon. Logos self-hosted under public/assets/logos/.
+- Top Deal of the Week: computed as max savings_dollars across catalog items; Explore deals links to that list page.
 
 Generated: {catalog.get("generated")}
 Slogan: {catalog.get("slogan")}
@@ -1356,7 +1642,24 @@ def main() -> int:
     data_dir.mkdir(parents=True, exist_ok=True)
     assets_dir.mkdir(parents=True, exist_ok=True)
 
-    # Catalog for public API: flatten items without nesting full page.items duplication weight
+    # Catalog for public API: flatten items without nesting full page.items duplication weight.
+    # Storewide Rakuten shortlink stays in homepage HTML only (not in public catalog.json).
+    public_features = dict(catalog["features"])
+    sw = dict(public_features.get("storewide") or {})
+    if (sw.get("store") or "").lower() == "rakuten" or "rakuten" in (sw.get("summary") or "").lower():
+        public_features["storewide"] = {
+            "id": sw.get("id") or "storewide",
+            "kind": "feature",
+            "title": sw.get("title") or "Best Store-wide Saving Deal",
+            "status": "coming_soon",
+            "summary": "See homepage card",
+            "store": None,
+            "offer": None,
+            "logo": None,
+            "link": None,
+            "page_link": None,
+            "cta_label": "Explore deals",
+        }
     public_catalog = {
         "generated": catalog["generated"],
         "site_url": catalog["site_url"],
@@ -1364,7 +1667,11 @@ def main() -> int:
         "slogan": catalog["slogan"],
         "disclosure": catalog["disclosure"],
         "pages": [
-            {k: v for k, v in p.items() if k != "items"}
+            {
+                k: v
+                for k, v in p.items()
+                if k != "items"
+            }
             for p in catalog["pages"]
         ],
         "items": [
@@ -1390,7 +1697,7 @@ def main() -> int:
             }
             for it in catalog["items"]
         ],
-        "features": catalog["features"],
+        "features": public_features,
     }
 
     (data_dir / "catalog.json").write_text(

@@ -19,7 +19,12 @@
       "forum_path": "/h2-computer-hardware",
       "image": "https://m.media-amazon.com/images/P/B07PGL2WVS.01._SCLZZZZZZZ_SX500_.jpg",
       "status": "active",
-      "biggest_saving_dollars": 440.0
+      "biggest_saving_dollars": 440.0,
+      "thumbnails": [
+        "https://m.media-amazon.com/images/P/B07PGL2WVS.01._SCLZZZZZZZ_SX500_.jpg",
+        "https://ugc.production.linktr.ee/ae3bf544-d24e-4790-911a-c6246b288a8c_31vKkAciLkL.-SL500-.jpeg",
+        "https://ugc.production.linktr.ee/84b9a1bf-30fa-48c4-be88-e122f18e6afe_31ROSz-yARL.-SL500-.jpeg"
+      ]
     },
     {
       "type": "page",
@@ -35,7 +40,12 @@
       "forum_path": "/h3-video-game-deals",
       "image": "https://ugc.production.linktr.ee/867fcd21-5653-4bda-b340-9a1ef49f23e1_51l-XjAbRbL.-SL500-.jpeg",
       "status": "active",
-      "biggest_saving_dollars": 47.01
+      "biggest_saving_dollars": 47.01,
+      "thumbnails": [
+        "https://ugc.production.linktr.ee/867fcd21-5653-4bda-b340-9a1ef49f23e1_51l-XjAbRbL.-SL500-.jpeg",
+        "https://m.media-amazon.com/images/I/41SO+2GoD6L._SL500_.jpg",
+        "https://ugc.production.linktr.ee/bebb81ab-5d09-4215-89e2-f85d225b2c0c_51Gj5jNW89L.-SL500-.jpeg"
+      ]
     }
   ],
   "items": [
@@ -349,12 +359,28 @@
       "summary": "Target Circle: 40% off when you buy 3 soda 12-packs (through 2026-10-31). Pepsi about $0.42 per can after the offer; Coca-Cola about $0.44 per can after the offer.",
       "store": "Target",
       "link": "https://www.target.com/c/soda-grocery/-/N-5xsz1",
+      "page_link": "https://telegra.ph/Preview-This-Weeks-Pepsi-and-Coke-Deals-by-Store-week-of-2026-10-29-10-30",
       "image": null,
+      "logos": [
+        {
+          "src": "https://spacexygrok.github.io/assets/logos/target.svg",
+          "alt": "Target"
+        },
+        {
+          "src": "https://spacexygrok.github.io/assets/logos/pepsi.svg",
+          "alt": "Pepsi"
+        },
+        {
+          "src": "https://spacexygrok.github.io/assets/logos/coca-cola.svg",
+          "alt": "Coca-Cola"
+        }
+      ],
       "now_price": null,
       "old_price": null,
       "savings_dollars": null,
       "savings_percent": null,
       "date": "2026-10-31",
+      "cta_label": "Explore deals",
       "category": "Soda"
     },
     "top_deal_of_week": {
@@ -388,18 +414,22 @@
         "badge": "Deal",
         "anchor": "item-1",
         "status": "active"
-      }
+      },
+      "cta_label": "Explore deals",
+      "page_link": "/h2-computer-hardware"
     },
     "storewide": {
       "id": "storewide",
       "kind": "feature",
       "title": "Best Store-wide Saving Deal",
       "status": "coming_soon",
-      "summary": "Coming soon",
+      "summary": "See homepage card",
       "store": null,
+      "offer": null,
+      "logo": null,
       "link": null,
-      "savings_dollars": null,
-      "savings_percent": null
+      "page_link": null,
+      "cta_label": "Explore deals"
     }
   }
 }
