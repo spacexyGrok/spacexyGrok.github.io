@@ -1141,18 +1141,30 @@ def esc(s: str) -> str:
     )
 
 
-def nav_html(active: str = "home") -> str:
+def nav_html(active: str = "home", pages: list | None = None) -> str:
+    """Build main nav. Topic list links only when catalogue pages are present."""
     links = [
         ("home", "/", "Home"),
-        ("hardware", "/h2-computer-hardware", "Computer Hardware"),
-        ("games", "/h3-video-game-deals", "Video Game Deals"),
-        ("tech-tools", "/h5-tech-tools", "Tech Tools"),
-        ("auto-tools", "/h6-auto-tools", "Auto Tools"),
-        ("kitchen", "/h7-kitchen-accessories", "Kitchen"),
-        ("early-bf", "/h8-early-black-friday", "Early Black Friday"),
-        ("forum", "/forum", "Forum boards"),
-        ("search", "/h1-deals-and-finds#search", "Search"),
     ]
+    if pages:
+        # Prefer known forum_path mapping order from active pages.
+        seen = set()
+        for page in pages:
+            fp = page.get("forum_path") or ""
+            title = page.get("title") or page.get("category") or "List"
+            if not fp or fp in seen:
+                continue
+            seen.add(fp)
+            key = page.get("slug") or fp
+            # Short nav labels
+            label = page.get("category") or title.split("(")[0].strip() or title
+            links.append((key, fp, label))
+    links.extend(
+        [
+            ("forum", "/forum", "Forum boards"),
+            ("search", "/h1-deals-and-finds#search", "Search"),
+        ]
+    )
     bits = []
     for key, href, label in links:
         bits.append(f'<a href="{href}">{esc(label)}</a>')
@@ -1391,7 +1403,7 @@ def build_homepage(catalog: dict, css: str, js: str) -> str:
     body = f"""<body class="df-body">
 <script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
-{nav_html("home")}
+{nav_html("home", catalog.get("pages") or [])}
 <h1 class="df-title">Deals and Finds</h1>
 <p class="df-slogan">{esc(slogan)}</p>
 <p class="df-disclosure">{esc(DISCLOSURE)}</p>
@@ -1449,7 +1461,7 @@ def build_list_page(page: dict, css: str, js: str) -> str:
     body = f"""<body class="df-body">
 <script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
-{nav_html("list")}
+{nav_html("list", [page])}
 <h1 class="df-title">{esc(title)}</h1>
 <p class="df-disclosure">{esc(DISCLOSURE)}</p>
 <p class="df-intro">{esc(list_intro(page))}</p>
@@ -1480,7 +1492,7 @@ def build_test_page(css: str, js: str) -> str:
     body = f"""<body class="df-body">
 <script>(function(){{var t=document.documentElement.getAttribute('data-theme')||'dark';document.body.setAttribute('data-theme',t);}})();</script>
 <div class="df-wrap">
-{nav_html("test")}
+{nav_html("test", [])}
 <h1 class="df-title">Forumotion asset test</h1>
 <p class="df-slogan">Checks external CSS, JS, and catalog.json fetch</p>
 <p class="df-disclosure">{esc(DISCLOSURE)}</p>
