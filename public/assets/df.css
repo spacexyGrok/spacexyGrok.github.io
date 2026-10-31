@@ -1,0 +1,232 @@
+/* Deals and Finds: shared Forumotion / GitHub card styles */
+:root {
+  --df-bg: #0f1419;
+  --df-surface: #1a222c;
+  --df-surface-2: #232d3a;
+  --df-border: #3a4656;
+  --df-text: #e8eef5;
+  --df-muted: #9aa8b8;
+  --df-accent: #2bb5a0;
+  --df-accent-2: #e86b5a;
+  --df-link: #6ec9ff;
+  --df-radius: 12px;
+  --df-gap: 1rem;
+  --df-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body.df-body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--df-font);
+  background: var(--df-bg);
+  color: var(--df-text);
+  line-height: 1.5;
+}
+.df-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+.df-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+.df-nav a {
+  color: var(--df-link);
+  text-decoration: none;
+}
+.df-nav a:hover { text-decoration: underline; }
+.df-title {
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+  line-height: 1.15;
+}
+.df-slogan {
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  color: var(--df-muted);
+  margin: 0 0 0.65rem;
+  font-weight: 500;
+}
+.df-disclosure {
+  font-size: 0.8rem;
+  color: var(--df-muted);
+  margin: 0 0 1.25rem;
+  max-width: 62ch;
+}
+.df-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--df-gap);
+  margin-bottom: 1.5rem;
+}
+.df-card {
+  background: var(--df-surface);
+  border: 1px solid var(--df-border);
+  border-radius: var(--df-radius);
+  padding: 1rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.df-card:hover {
+  border-color: #5a6a7e;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+}
+.df-card h2, .df-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+.df-card .df-meta {
+  font-size: 0.8rem;
+  color: var(--df-muted);
+}
+.df-card .df-summary {
+  font-size: 0.92rem;
+  color: var(--df-text);
+  flex: 1;
+}
+.df-card a.df-cta {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: var(--df-link);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.df-card a.df-cta:hover { text-decoration: underline; }
+.df-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--df-surface-2);
+  border: 1px solid var(--df-border);
+  color: var(--df-accent);
+  width: fit-content;
+}
+.df-badge--soon {
+  color: var(--df-muted);
+}
+.df-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0 1rem;
+}
+.df-search {
+  flex: 1 1 220px;
+  min-width: 180px;
+}
+.df-search input, .df-sort select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--df-border);
+  background: var(--df-surface);
+  color: var(--df-text);
+  font: inherit;
+}
+.df-sort {
+  flex: 0 1 200px;
+}
+.df-sort label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--df-muted);
+  margin-bottom: 0.2rem;
+}
+.df-section-title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.75rem;
+  font-weight: 700;
+}
+.df-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--df-gap);
+}
+.df-product {
+  background: var(--df-surface);
+  border: 1px solid var(--df-border);
+  border-radius: var(--df-radius);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.df-product img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  background: #0a0e12;
+  border-radius: 8px;
+  border: 1px solid var(--df-border);
+}
+.df-product h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+.df-prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.df-now {
+  font-size: 1.35rem;
+  font-weight: 750;
+  color: var(--df-accent);
+}
+.df-old {
+  font-size: 0.95rem;
+  color: var(--df-muted);
+  text-decoration: line-through;
+}
+.df-save {
+  font-size: 0.82rem;
+  color: var(--df-accent-2);
+  font-weight: 600;
+}
+.df-note {
+  font-size: 0.85rem;
+  color: var(--df-muted);
+}
+.df-intro {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  max-width: 70ch;
+}
+.df-fm-credit {
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  color: var(--df-muted);
+  text-align: center;
+}
+.df-fm-credit a { color: var(--df-muted); }
+.df-hidden { display: none !important; }
+.df-empty {
+  color: var(--df-muted);
+  font-size: 0.95rem;
+  padding: 1rem 0;
+}
+@media (max-width: 560px) {
+  .df-wrap { padding: 1rem 0.75rem 2rem; }
+  .df-now { font-size: 1.2rem; }
+}
